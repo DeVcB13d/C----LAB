@@ -4,7 +4,6 @@ and it should have the following menus like adding new account, withdraw
 (keep a min balance of 500), deposit, balance enquiry and account statement
 (cust_name, acc_no, acc_type, balance)*/
 #include<iostream>
-#include<string>
 using namespace std ;
 
 const int m = 20;
@@ -90,7 +89,6 @@ void menu(){
     cout << "3 : DEPOSIT CASH\n";
     cout << "4 : WITHDRAW CASH\n";
     cout << "5 : BALANCE ENQUIRY\n\n";
-   
     cout << "___________________________________________________________________\n";
     cout << "PLEASE SELECT AN OPTION : " ;
     
@@ -142,8 +140,4 @@ int main()
     }
     cout << "Thanks !!!!!\n\n";
     return 0 ;
-
-   
-    
-
 }

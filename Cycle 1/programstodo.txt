@@ -1,0 +1,47 @@
+1. Write a C++ program to calculate the grades of a list of students with attributes
+(Name, Roll_no, Marks of 3 subjects) using class with member functions
+input(), calcGrade(), display()
+.
+2. Write a C++ program to calculate the area of different shapes like Rectangle,
+Square etc (at least 5 shapes) using overloaded function area().
+
+3. Write a C++ program using classes to perform bank transaction for n customers
+(cust_name, acc_no, acc_type, balance). The program should be menu driven
+and it should have the following menus like adding new account, withdraw
+(keep a min balance of 500), deposit, balance enquiry and account statement
+(cust_name, acc_no, acc_type, balance).
+
+4. Write a C++ progtram to perform operations such as compare, concatenate and
+length on String objects.
+
+5. Write a C++ program to demonstrate the order of execution of constructors &
+destructors.
+
+6. Create a class TIME with members hours, minutes, seconds. Take input, add
+two time objects by passing objects to function and display result.
+
+7. Write a C++ program to implement a class MATRIX with member functions such
+as matrix_add, matrix_mult, matrix_transpose, matrix_determinant etc.
+
+8. Write a program to perform addition of two complex numbers using constructor
+overloading. The first constructor which takes no argument is used to create
+objects which are not initialized, second which takes one argument is used to
+initialize real and imag parts to equal values and third which takes two
+argument is used to initialized real and imag to two different values.
+
+9. Write a C++ program to design a class having static member function named
+showcount() which has the property of displaying the number of objects created
+of the class.
+
+10. Write a C++ program using class to process shopping list for a Departmental
+Store. The list include details such as the Code-no and price of each item and
+perform the operations like adding & deleting items to the list and printing the
+total value of an order.
+
+11. Write a Program to swap private data members of classes named as class_1,
+class_2 using friend function.
+
+12. Write a Program to design a class complex to represent complex numbers. The
+complex class should use an external function (use it as a friend function) to
+add two complex numbers. The function should return an object of type
+complex representing the sum of two complex numbers.

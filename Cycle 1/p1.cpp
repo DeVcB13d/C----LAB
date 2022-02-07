@@ -2,8 +2,8 @@
 (Name, Roll_no, Marks of 3 subjects) using class with member functions
 input(), calcGrade(), display().*/
 #include<iostream>
-#include<cmath>
 using namespace std ;
+
 class student{
     string Name ;
     int Roll_no ;
