@@ -3,10 +3,13 @@
 and it should have the following menus like adding new account, withdraw
 (keep a min balance of 500), deposit, balance enquiry and account statement
 (cust_name, acc_no, acc_type, balance)*/
+
 #include<iostream>
+#include<string>
 using namespace std ;
 
 const int m = 20;
+
 class customer{
     int count;
     string cust_name[m];
@@ -76,8 +79,9 @@ void customer::withdraw(float amount , int index){
         b = b - amount ;
         balance[index] = b ;
     }
-    else{cout << "Balance less than 500 , withdrawal not possible"<<endl;}
-    
+    else if (amount > b ){
+        cout << "Insufficient Balance , withdrawal not possible"<<endl;}
+    else {cout << "Balance less than 500 , withdrawal not possible\n";}
 }
 
 void menu(){
@@ -138,6 +142,6 @@ int main()
         cin >> lcontrol ;
         lc++ ;
     }
-    cout << "Thanks !!!!!\n\n";
+    cout << "\n\nThanks !!!!!\n\n";
     return 0 ;
 }

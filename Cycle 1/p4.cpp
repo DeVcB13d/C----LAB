@@ -1,16 +1,17 @@
 /*Write a C++ progtram to perform operations such as compare, concatenate and
 length on String objects*/
 #include <iostream>
+#include <string>
 using namespace std ;
 
 const int m = 100;
 class strings{
     string str ;
     public:
-        void assignstring(void){
-            cout << "Enter the string : " ;
-            cin >> str ;
+        strings(string x){
+            str = x ;
         }
+        strings(){};
         bool compare(strings A, strings B);
         friend strings concatnate(strings A , strings B);
         int length();
@@ -56,9 +57,9 @@ strings concatnate(strings A , strings B){
 
 
 int main(){
-    strings A , B , C ;
-    A.assignstring();
-    B.assignstring();
+    strings C ;
+    strings A = strings("Hello");
+    strings B = strings("World");
     cout << A.compare(A,B) << "\n";
     C = concatnate(A,B);
     A.display();
