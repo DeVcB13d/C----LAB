@@ -6,6 +6,7 @@ using namespace std ;
 
 class student{
     string Name ;
+    static int Sno;
     int Roll_no ;
     float s1 ;
     float s2 ;
@@ -15,7 +16,8 @@ class student{
         char calcGrade(void);
         void display(void);
 };
-
+int student::Sno ;
+student slist[10];
 void student::input(void){
     cout << "Enter the name : " << endl ;
     cin >> Name ;
@@ -27,7 +29,7 @@ void student::input(void){
     cin >> s2 ;
     cout << "Enter marks in subject 3 " << endl ;
     cin >> s3 ;
-    cout  << "\n\n\n";
+    cout  << "\n\n\n"; 
 }
 
 char student::calcGrade(void){
