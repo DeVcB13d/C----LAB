@@ -16,6 +16,10 @@ class Time{
             cin >> minutes ;
             cout << "Enter time in seconds: " ;
             cin >> seconds ;
+            minutes+=(seconds%60);
+            seconds/=60;
+            hours+=(minutes%60);
+            minutes/=60;
         }
         friend Time addtime(Time A , Time B);
         void displaytime(){
@@ -46,7 +50,7 @@ int main()
     B.get_time();
     C = addtime(A,B);
     
-    cout << "A = " ;
+    cout << "\n\nA = " ;
     A.displaytime();
     cout << "B = " ;
     B.displaytime();

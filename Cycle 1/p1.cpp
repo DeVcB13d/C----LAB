@@ -1,7 +1,8 @@
-/*program to calculate the grades of a list of students with attributes
-(Name, Roll_no, Marks of 3 subjects) using class with member functions
-input(), calcGrade(), display().*/
+//program to calculate the grades of a list of students
+//with attributes(Name, Roll_no, Marks of 3 subjects) 
+//using class with member functions input(), calcGrade(), display().
 #include<iostream>
+#include<cstring>
 using namespace std ;
 
 class student{
@@ -16,8 +17,7 @@ class student{
         char calcGrade(void);
         void display(void);
 };
-int student::Sno ;
-student slist[10];
+
 void student::input(void){
     cout << "Enter the name : " << endl ;
     cin >> Name ;
@@ -60,20 +60,24 @@ void student::display(void){
     char grades = calcGrade();
     cout << "ROLL NO :" << Roll_no <<endl ;
     cout << "NAME    :" << Name <<endl;
+    cout << "SCORE   :" << (s1+s2+s3)/3 <<endl;
     cout << "GRADE   :" << grades << endl ;
     cout << "\n\n\n" ;
 }
 
 int main()
 {
-    student A , B , C ; 
-    A.input();
-    B.input();
-    C.input();
-
-    cout << "Grades and details :" << "\n\n" ;
-    A.display();
-    B.display();
-    C.display();
-    return 0 ;
+    student* slist;
+    int nsts ;
+    cout << "Enter the Number of students: ";
+    cin >> nsts ;
+    slist = new student[nsts+1];
+    cout << "Enter the student details: \n";
+    for(int i=1;i<=nsts;i++){
+        slist[i].input();
+    }
+    cout << "Here are the calculated grades :\n";
+    for(int i=1;i<=nsts;i++){
+        slist[i].display();
+    }
 }

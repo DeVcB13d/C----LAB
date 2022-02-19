@@ -105,12 +105,12 @@ MATRIX matrix_transpose(MATRIX A){
 }
 
 int main(){
-    MATRIX m1(1,2);
+    MATRIX m1(4,2);
     m1.create_matrix();
-    MATRIX m2(2,3);
+    MATRIX m2(4,3);
     m2.create_matrix();
     MATRIX m3 = matrix_mult(m1,m2);
-    MATRIX m4 = matrix_transpose(m1);
+    MATRIX m4 = matrix_transpose(m2);
     m1.show_matrix();
     m2.show_matrix();
     m3.show_matrix();

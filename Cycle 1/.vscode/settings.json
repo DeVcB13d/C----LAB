@@ -5,5 +5,5 @@
         "random": "cpp",
         "cmath": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Enabled"
 }

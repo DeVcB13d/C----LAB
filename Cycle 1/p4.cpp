@@ -1,5 +1,5 @@
-/*Write a C++ progtram to perform operations such as compare, concatenate and
-length on String objects*/
+/*Write a C++ progtram to perform operations such as compare,
+concatenate and length on String objects*/
 #include <iostream>
 #include <cstring>
 using namespace std ;
