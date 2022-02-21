@@ -13,33 +13,40 @@ class MATRIX {
         void add_elem(int i , int j ,int val){
             p[i][j] = val;
         }
-        void create_matrix();
+        void create_matrix(int,int);
         int elem(int r,int c){
             return (p[r][c]);}
         void show_matrix();
         friend MATRIX matrix_add(MATRIX A, MATRIX B);
         friend MATRIX matrix_mult(MATRIX A, MATRIX B);
         friend MATRIX matrix_transpose(MATRIX A);
-        int matrix_determinant();
+        MATRIX rowredn();
+        int matrix_determinant(MATRIX);
 };
 
 MATRIX::MATRIX(int r,int c){
     R = r ;
     C = c ;
-    p = new int*[R];
+    p = new int*[R+2];
     for (int i = 0;i<C;i++){
-        p[i] = new int[C] ;
+        p[i] = new int[C+2] ;
     }
 }
 
-void MATRIX::create_matrix(){
+void MATRIX::create_matrix(int r,int c){
     int value;
-    for(int j = 0 ; j < R ; j++){
-        cout << "For row " << j+1 << "\n";
+    R = r ;
+    C = c ;
+    p = new int*[R+1];
+    for (int i = 0;i<C;i++){
+        p[i] = new int[C+1] ;
+    }
+    for(int l = 0 ; l < R ; l++){
+        cout << "For row " << l+1 << "\n";
         for (int k = 0 ; k < C ; k++ ){
             cout << "Enter element " << k + 1 << ": " ;
             cin >>  value ;
-            add_elem(j,k,value);
+            p[l][k] = value ;
         }
     }
 }
@@ -104,15 +111,37 @@ MATRIX matrix_transpose(MATRIX A){
     return X;
 }
 
+MATRIX MATRIX::rowredn(){
+    MATRIX X(R,R);
+    if (R == C){
+        int n = R;
+        for(int i = 0; i < n ; i++){
+            float f = p[i][i] / p[i+1][i] ;
+            for(int j ; j < n ; j++ ){
+                p[i+1][j] -= p[i][j]*f ;
+            }
+        }
+        X.p = p ;
+    }
+    else{cout << "Not a square matrix" ;}
+    return X ;
+}
+
+int MATRIX::matrix_determinant(MATRIX X){
+    int det = 1 ;
+    if (C ==R){
+        MATRIX Y = X.rowredn();
+        for(int i = 0 ; i<C; i++){
+            det = det * 
+        } 
+    }
+}
+
+
 int main(){
-    MATRIX m1(4,2);
-    m1.create_matrix();
-    MATRIX m2(4,3);
-    m2.create_matrix();
-    MATRIX m3 = matrix_mult(m1,m2);
-    MATRIX m4 = matrix_transpose(m2);
+    MATRIX m1;
+    m1.create_matrix(3,2);
+    MATRIX m2 = matrix_transpose(m1);
     m1.show_matrix();
     m2.show_matrix();
-    m3.show_matrix();
-    m4.show_matrix();
 } 

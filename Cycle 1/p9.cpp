@@ -8,10 +8,10 @@ class students{
     static int count ;
     string name ;
     public:
+    students(){count++;}
     void getname(){
         cout << "ENTER NAME : ";
         cin >> name ; 
-        count++;
     }
     static void showcount(){
         cout << "The number of objects created are " << count << "\n";

@@ -88,47 +88,46 @@ int main()
     cout << "6 : EXIT               ";
     cout << "\n";
     while (lcontrol == 0 && lc < 30){
-
-            cout << "PLEASE SELECT AN OPTION : " ;
-            int ch;
-            cin >> ch ;
-            cout << "\n\n" ;
-            if (ch==1){
-                clist[eno].addacc(); 
-                aclist[eno] = clist[eno].getAC();
-                eno++;
-            }
-            else if(ch>=2 && ch <= 5){
-                int RefNo,C_index;
-                cout << "Enter your Account number :" ;
-                cin >> RefNo ;
-                for(int i=0;i<30;i++){
-                    if (aclist[i]==RefNo){
-                        C_index = i ;
-                    }
-                }
-                if(ch == 2){
-                    clist[C_index].acc_state();
-                }
-                else if(ch==3){
-                    float amt ;
-                    cout << "Enter the amount to deposit: ";
-                    cin >> amt; 
-                    clist[C_index].deposit(amt);
-                }
-                else if(ch==4){
-                    float amt ;
-                    cout << "Enter the amount to withdraw: ";
-                    cin >> amt; 
-                    clist[C_index].withdraw(amt);
-                }
-                else if(ch == 5){
-                    clist[C_index].balance_enq();
-                }
-            }
-            else if(ch == 6){lc = 31;}
-            else{cout << "Invalid option\n";}
-            lc++;
+        cout << "\nPLEASE SELECT AN OPTION : " ;
+        int ch;
+        cin >> ch ;
+        cout << "\n\n" ;
+        if (ch==1){
+            clist[eno].addacc(); 
+            aclist[eno] = clist[eno].getAC();
+            eno++;
         }
+        else if(ch>=2 && ch <= 5){
+            int RefNo,C_index;
+            cout << "Enter your Account number :" ;
+            cin >> RefNo ;
+            for(int i=0;i<30;i++){
+                if (aclist[i]==RefNo){
+                    C_index = i ;
+                }
+            }
+            if(ch == 2){
+                clist[C_index].acc_state();
+            }
+            else if(ch==3){
+                float amt ;
+                cout << "Enter the amount to deposit: ";
+                cin >> amt; 
+                clist[C_index].deposit(amt);
+            }
+            else if(ch==4){
+                float amt ;
+                cout << "Enter the amount to withdraw: ";
+                cin >> amt; 
+                clist[C_index].withdraw(amt);
+            }
+            else if(ch == 5){
+                clist[C_index].balance_enq();
+            }
+        }
+        else if(ch == 6){lc = 31;}
+        else{cout << "Invalid option\n";}
+        lc++;
+    }
     return 0 ;
 }

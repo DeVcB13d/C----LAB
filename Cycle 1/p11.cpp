@@ -48,6 +48,7 @@ int main()
     cout << "\nAfter swapping :\n";
     A.show();
     B.show();
+    cout << "\n";
     return 0 ;
 
 }
