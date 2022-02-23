@@ -4,12 +4,16 @@
 #include<iostream>
 using namespace std ;
 const int c = 20;
-class MATRIX {
+
+
+class MATRIX 
+{
     int R,C ;
     int **p ;
     public: 
-        MATRIX(){R = 0;C =0;}
+        MATRIX(){}
         MATRIX(int r,int c);
+        MATRIX(const MATRIX &X);
         void add_elem(int i , int j ,int val){
             p[i][j] = val;
         }
@@ -20,11 +24,20 @@ class MATRIX {
         friend MATRIX matrix_add(MATRIX A, MATRIX B);
         friend MATRIX matrix_mult(MATRIX A, MATRIX B);
         friend MATRIX matrix_transpose(MATRIX A);
-        MATRIX rowredn();
+        friend MATRIX rowredn(MATRIX);
         int matrix_determinant(MATRIX);
 };
-
-MATRIX::MATRIX(int r,int c){
+MATRIX::MATRIX(const MATRIX &X){
+    R = X.R;
+    C = X.C;
+    for(int l = 0 ; l < R ; l++){
+        for (int k = 0 ; k < C ; k++ ){
+            p[l][k] = X.p[l][k];
+        }
+    }
+}
+MATRIX::MATRIX(int r,int c)
+{
     R = r ;
     C = c ;
     p = new int*[R+2];
@@ -33,7 +46,8 @@ MATRIX::MATRIX(int r,int c){
     }
 }
 
-void MATRIX::create_matrix(int r,int c){
+void MATRIX::create_matrix(int r,int c)
+{
     int value;
     R = r ;
     C = c ;
@@ -51,7 +65,8 @@ void MATRIX::create_matrix(int r,int c){
     }
 }
 
-void MATRIX::show_matrix(){
+void MATRIX::show_matrix()
+{
     for(int i = 0 ;i < R ;i++){
         for(int j = 0 ; j < C ; j++){
             cout << p[i][j] << " " ;
@@ -61,7 +76,8 @@ void MATRIX::show_matrix(){
     cout << "\n\n";
 }
 
-MATRIX matrix_add(MATRIX A , MATRIX B){
+MATRIX matrix_add(MATRIX A , MATRIX B)
+{
     
     if (A.C == B.C && A.R == B.R){
         MATRIX x(A.R,A.C);
@@ -79,7 +95,8 @@ MATRIX matrix_add(MATRIX A , MATRIX B){
     }
 }
 
-MATRIX matrix_mult(MATRIX A , MATRIX B){
+MATRIX matrix_mult(MATRIX A , MATRIX B)
+{
     
     if (A.C == B.R){
         MATRIX x(A.R,B.C);
@@ -101,7 +118,8 @@ MATRIX matrix_mult(MATRIX A , MATRIX B){
     }
 }
 
-MATRIX matrix_transpose(MATRIX A){
+MATRIX matrix_transpose(MATRIX A)
+{
     MATRIX X(A.C,A.R) ;
         for(int i = 0 ;i < A.R ;i++){
             for(int j = 0 ; j < A.C ; j++){
@@ -111,37 +129,42 @@ MATRIX matrix_transpose(MATRIX A){
     return X;
 }
 
-MATRIX MATRIX::rowredn(){
-    MATRIX X(R,R);
-    if (R == C){
-        int n = R;
-        for(int i = 0; i < n ; i++){
-            float f = p[i][i] / p[i+1][i] ;
-            for(int j ; j < n ; j++ ){
-                p[i+1][j] -= p[i][j]*f ;
+MATRIX rowredn(MATRIX A)
+{
+    MATRIX X(A);//copy A to X
+    for(int i = 0;i<A.C;i++){
+        for(int j = i;j<A.C;j++){
+            float f = (X.p[j][i])/(X.p[i][i]);
+            for(int k = 0 ; k < A.C ; k++){
+                X.p[j][k] = X.p[j][k] - (f*(X.p[i][k]));
             }
         }
-        X.p = p ;
     }
-    else{cout << "Not a square matrix" ;}
     return X ;
 }
 
-int MATRIX::matrix_determinant(MATRIX X){
+int MATRIX::matrix_determinant(MATRIX X)
+{
     int det = 1 ;
     if (C ==R){
-        MATRIX Y = X.rowredn();
+        MATRIX Y = rowredn(X);
         for(int i = 0 ; i<C; i++){
-            det = det * 
+            det = det * Y.p[i][i];
         } 
     }
 }
 
-
-int main(){
+int main()
+{
     MATRIX m1;
-    m1.create_matrix(3,2);
-    MATRIX m2 = matrix_transpose(m1);
+    m1.create_matrix(3,3);
+    
     m1.show_matrix();
+    
+    cout << "hi";
+    MATRIX m2 ;
+    m2 = rowredn(m1);
     m2.show_matrix();
+    return 0 ;
+
 } 

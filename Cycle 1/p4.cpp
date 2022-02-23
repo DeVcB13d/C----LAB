@@ -7,62 +7,83 @@ using namespace std ;
 int m =100;
 
 class String{
-    int len;
+    int l;
     char *str ;
-
     public:
         String(const char *x);
-        String(){
-            str = new char[1];
-        };
-        friend bool compare(String A, String B);
+        String(){}
+        friend void isequal(String A, String B);
         friend String concatnate(String A , String B);
-        friend int length(String A){return A.len;}
+        friend int length(String A){return A.l;}
         void display(){cout << str << endl;}
-
+        friend int len(const char* x);
 };
 
-int length(const char *x){
-    int c = 0 ;
-    for(int i = 0; i < m ; i++){
-        char k = x[i] ;
-        if (k != '\0'){
-            c++ ;
+int len(const char*x)
+{
+    int c = 0;
+    int l = 0;
+    int i = 0;
+    while (c<=0){
+        if (x[i] != '\0'){
+            l++ ;
+            i++ ;
+        }
+        else if (x[i] == '\0'){
+            c++;
         }
     }
-    return c ;
+    return l ;
 }
 
-bool compare(String A ,String B){
-    if (A.str == B.str){
-        return true ;
+String concatnate(String x,String y){
+    String  z ;
+    z.l = x.l + y.l ;
+    z.str = new char[z.l + 1];
+    for(int i = 0 ; i < x.l ; i ++){
+        z.str[i] = x.str[i];
     }
-    else {return false ;}
+    int k = 0 ;
+    for(int j = x.l ; j < z.l ; j++){
+        z.str[j] = y.str[k];
+        k++;
+    }
+    return z ;
 }
 
-String concatnate(String A , String B){
-    String f ;
-    int lA = A.len;
-    int lB = B.len;
-    f.str = new char [lA + lB + 1];
-    strcpy(f.str,A.str);
-    strcat(f.str,B.str);
-    return f ;
+void isequal(String A ,String B){
+    if (A.l == B.l){
+        int s = 0 ;
+        for(int i = 0 ; i < A.l ; i++ ){
+            if (A.str[i] == B.str[i]){
+                s++;
+            }
+        }
+        if (s== A.l){cout<<"\nsame";}
+        else{cout << "\nDifferent";}
+    }
+    else{cout<<"\ndifferent" ;}
+    
 }
 
-String::String(const char* x){
-    len = length(x);
-    str = new char[len+1]; 
-    strcpy(str,x);
+
+
+String::String(const char* y)
+{
+    l = len(y);
+    str = new char[l+1];
+    for(int i = 0 ; i < l ; i++){
+        str[i] = y[i];
+    }
 }
 
 int main()
 {
-    String A("dev") ;
-    String B("Cdede");
+    String A("Welcome ") ;
+    String B("Dev");
     String C = concatnate(A,B) ;
-    String D = ("alpha");
-    String E = ("dev") ;
+    String D = ("xyz");
+    String E = ("Dev") ;
     cout << "A = ";
     A.display();
     cout << "B = ";
@@ -70,8 +91,10 @@ int main()
     cout << "C = ";
     C.display();
     cout << "Are they equal ?\n";
-    cout << "A and E " << compare(A,E)<<endl ;
-    cout << "A and D " << compare(A,D)<<endl ;
+    cout << "A and E ";
+    isequal(A,E);
+    cout << "\nA and C ";
+    isequal(A,C);
 
     return 0 ;
 }
