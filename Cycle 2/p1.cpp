@@ -43,7 +43,6 @@ bool operator==(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] != y.Varr[j]){
             ret = false;
-            break;
         }
     }
     return ret;
@@ -55,7 +54,6 @@ bool operator!=(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] != y.Varr[j]){
             ret = true;
-            break;
         }
     }
     return ret;
@@ -67,7 +65,6 @@ bool operator<=(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] >= y.Varr[j]){
             ret = false;
-            break;
         }
     }
     return ret;
@@ -79,7 +76,6 @@ bool operator>=(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] <= y.Varr[j]){
             ret = false;
-            break;
         }
     }
     return ret;
@@ -91,7 +87,6 @@ bool operator<(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] > y.Varr[j]){
             ret = false;
-            break;
         }
     }
     return ret;
@@ -103,7 +98,6 @@ bool operator>(Vector x,Vector y)
     for(int j = 0 ; j < x.size ; j++){
         if(x.Varr[j] < y.Varr[j]){
             ret = false;
-            break;
         }
     }
     return ret;

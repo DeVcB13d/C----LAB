@@ -94,7 +94,7 @@ int main(){
             A.createbill();
         }
         else{cout << "Invalid option ";}
-        cout << "Enter 0 to continue : " ;
+        cout << "\nEnter 0 to continue : " ;
         cin >> ch ;
     }
     return 0 ;

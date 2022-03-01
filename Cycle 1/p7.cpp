@@ -79,7 +79,7 @@ void MATRIX::show_matrix()
 MATRIX matrix_add(MATRIX A , MATRIX B)
 {
     
-    if (A.C == B.C && A.R == B.R){
+    //if (A.C == B.C && A.R == B.R){
         MATRIX x(A.R,A.C);
         for(int i = 0 ;i < A.R ;i++){
             for(int j = 0 ; j < A.C ; j++){
@@ -87,12 +87,12 @@ MATRIX matrix_add(MATRIX A , MATRIX B)
             }    
         }
         return x ;
-    }
-    else{
-        cout << "Dimensions differernt cannot add\n";
-        MATRIX y(1,1);
-        return y;
-    }
+    //}
+    //else{
+    //    cout << "Dimensions differernt cannot add\n";
+    //    MATRIX y(1,1);
+    //    return y;
+    //}
 }
 
 MATRIX matrix_mult(MATRIX A , MATRIX B)
