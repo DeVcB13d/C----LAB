@@ -14,12 +14,9 @@ class MATRIX
         MATRIX(){}
         MATRIX(int r,int c);
         MATRIX(const MATRIX &X);
-        void add_elem(int i , int j ,int val){
-            p[i][j] = val;
-        }
+        void add_elem(int i , int j ,int val){p[i][j] = val;}
         void create_matrix(int,int);
-        int elem(int r,int c){
-            return (p[r][c]);}
+        int elem(int r,int c){return (p[r][c]);}
         void show_matrix();
         friend MATRIX matrix_add(MATRIX A, MATRIX B);
         friend MATRIX matrix_mult(MATRIX A, MATRIX B);
@@ -27,6 +24,7 @@ class MATRIX
         friend MATRIX rowredn(MATRIX);
         int matrix_determinant(MATRIX);
 };
+
 MATRIX::MATRIX(const MATRIX &X){
     R = X.R;
     C = X.C;
@@ -36,6 +34,7 @@ MATRIX::MATRIX(const MATRIX &X){
         }
     }
 }
+
 MATRIX::MATRIX(int r,int c)
 {
     R = r ;
@@ -67,6 +66,7 @@ void MATRIX::create_matrix(int r,int c)
 
 void MATRIX::show_matrix()
 {
+    cout << "\n\n";
     for(int i = 0 ;i < R ;i++){
         for(int j = 0 ; j < C ; j++){
             cout << p[i][j] << " " ;
@@ -89,7 +89,7 @@ MATRIX matrix_add(MATRIX A , MATRIX B)
         return x ;
     }
     else{
-        cout << "Dimensions diifferernt cannot add\n";
+        cout << "Dimensions differernt cannot add\n";
         MATRIX y(1,1);
         return y;
     }
@@ -158,13 +158,23 @@ int main()
 {
     MATRIX m1;
     m1.create_matrix(3,3);
-    
+    cout << "m1 = " ;
     m1.show_matrix();
-    
-    cout << "hi";
-    MATRIX m2 ;
-    m2 = rowredn(m1);
+    MATRIX m2;
+    cout << "m2 = ";
+    m2.create_matrix(3,3) ;
     m2.show_matrix();
+    MATRIX m3,m4,m5;
+    cout << "m1 + m2 = " ;
+    m3 = matrix_add(m1,m2);
+    m3.show_matrix();
+    cout << "m1 X m2 = ";
+    m4 = matrix_mult(m1,m2);
+    m4.show_matrix();
+    cout << "m2 transpose = ";
+    m5 = matrix_transpose(m2);
+    m5.show_matrix();
+
     return 0 ;
 
 } 

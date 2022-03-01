@@ -1,92 +1,74 @@
-
 #include<iostream>
 using namespace std ;
-const int c = 20;
 
-class MATRIX 
+class matrix 
 {
-    int R,C ;
+    int m,n ;
     int **p ;
-    public: 
-        MATRIX(){}
-        MATRIX(int r,int c);
-        MATRIX(const MATRIX &X);
-        void rowredn();
-        void show_matrix();
-        void create_matrix(int,int);
+    public:
+        matrix(){};
+        matrix(int M,int N);
+        friend matrix rr(matrix K);
+        void show();
 };
-void MATRIX::create_matrix(int r,int c)
+
+matrix::matrix(int M , int N)
 {
-    int value;
-    R = r ;
-    C = c ;
-    p = new int*[R+1];
-    for (int i = 0;i<C;i++){
-        p[i] = new int[C+1] ;
+    m = M ; n = N ;
+    p = new int*[M+1] ;
+    for(int i = 0 ; i < n ; i++){
+        *p = new int[N+1] ;
     }
-    for(int l = 0 ; l < R ; l++){
-        cout << "For row " << l+1 << "\n";
-        for (int k = 0 ; k < C ; k++ ){
-            cout << "Enter element " << k + 1 << ": " ;
-            cin >>  value ;
-            p[l][k] = value ;
+    for(int i = 0; i < m ; i++){
+        cout << "Row " << i + 1 << "\n" ;
+        for(int j = 0 ; j < m ; j++){
+            cout << "elem " << j + 1 << " : ";
+            int elem ;
+            cin >> elem ;
+            p[i][j] = elem ;
         }
     }
 }
-void MATRIX::show_matrix()
+
+matrix rr(matrix A)
 {
-    for(int i = 0 ;i < R ;i++){
-        for(int j = 0 ; j < C ; j++){
+    matrix R ;
+    R.m = A.m; R.m = R.n ;
+    //section to copy
+    for(int i = 0 ; i < R.m ; i++){
+        for(int j = 0 ; j < R.n ; j++){
+            R.p[i][j] = A.p[i][j];
+        }
+    }
+    //Row reduction
+    for(int i = 0;i<R.m;i++){
+        for(int j = i;j<R.n;j++){
+            float f = (A.p[j][i])/(A.p[i][i]);
+            for(int k = 0 ; k < A.n ; k++){
+                R.p[j][k] = R.p[j][k] - (f*(R.p[i][k]));
+            }
+        }
+    }
+}
+
+void matrix::show()
+{
+    for(int i = 0 ;i < m ;i++){
+        for(int j = 0 ; j < n ; j++){
             cout << p[i][j] << " " ;
         }
         cout << "\n";
     }
     cout << "\n\n";
 }
-MATRIX::MATRIX(const MATRIX &X){
-    R = X.R;
-    C = X.C;
-    for(int l = 0 ; l < R ; l++){
-        for (int k = 0 ; k < C ; k++ ){
-            p[l][k] = X.p[l][k];
-        }
-    }
-}
-MATRIX::MATRIX(int r,int c)
-{
-    R = r ;
-    C = c ;
-    p = new int*[R+2];
-    for (int i = 0;i<C;i++){
-        p[i] = new int[C+2] ;
-    }
-}
-
-void MATRIX::rowredn()
-{
-    for(int i = 0;i<C;i++){
-        for(int j = i;j<C;j++){
-            float f = (p[j][i])/(p[i][i]);
-            cout << f << "\n";
-            for(int k = 0 ; k < C ; k++){
-                p[j][k] = p[j][k] - (f*(p[i][k]));
-            }
-            show_matrix();
-        }
-    }
-}
 
 int main()
 {
-    MATRIX m1;
-    m1.create_matrix(3,3);
-    
-    m1.show_matrix();
-    
-    cout << "hi";
-    MATRIX m2 ;
-    m1.rowredn();
-    m1.show_matrix();
+    matrix A(3,3);
+    A.show();
+    matrix B ;
+    B = rr(A);
+    B.show();
     return 0 ;
+}
 
-} 
