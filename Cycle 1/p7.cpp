@@ -80,7 +80,9 @@ MATRIX matrix_add(MATRIX A , MATRIX B)
 {
     
     //if (A.C == B.C && A.R == B.R){
-        MATRIX x(A.R,A.C);
+        MATRIX x;
+        x.C = A.C;
+        x.R = A.R;
         for(int i = 0 ;i < A.R ;i++){
             for(int j = 0 ; j < A.C ; j++){
                 x.p[i][j] = A.p[i][j] + B.p[i][j];

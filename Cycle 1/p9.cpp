@@ -28,5 +28,4 @@ int main(){
     C.getname();
     students::showcount();
     return 0 ;
-
 }
