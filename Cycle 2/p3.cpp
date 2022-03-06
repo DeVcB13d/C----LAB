@@ -12,5 +12,10 @@ class Vector
         Vector(){}
         Vector(int z,int* k);
         friend bool operator* (Vector,Vector);
-        
+        friend Vector& operator<<(Vector,auto);
+        friend Vector& operator>>(Vector,auto);
 };
+
+Vector& operator>>(Vector A,auto){
+    
+}

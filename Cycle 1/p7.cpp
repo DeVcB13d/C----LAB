@@ -13,27 +13,15 @@ class MATRIX
     public: 
         MATRIX(){}
         MATRIX(int r,int c);
-        MATRIX(const MATRIX &X);
-        void add_elem(int i , int j ,int val){p[i][j] = val;}
         void create_matrix(int,int);
-        int elem(int r,int c){return (p[r][c]);}
         void show_matrix();
         friend MATRIX matrix_add(MATRIX A, MATRIX B);
         friend MATRIX matrix_mult(MATRIX A, MATRIX B);
         friend MATRIX matrix_transpose(MATRIX A);
+        friend int trace(MATRIX A);
         friend MATRIX rowredn(MATRIX);
         int matrix_determinant(MATRIX);
 };
-
-MATRIX::MATRIX(const MATRIX &X){
-    R = X.R;
-    C = X.C;
-    for(int l = 0 ; l < R ; l++){
-        for (int k = 0 ; k < C ; k++ ){
-            p[l][k] = X.p[l][k];
-        }
-    }
-}
 
 MATRIX::MATRIX(int r,int c)
 {
@@ -54,6 +42,7 @@ void MATRIX::create_matrix(int r,int c)
     for (int i = 0;i<C;i++){
         p[i] = new int[C+1] ;
     }
+
     for(int l = 0 ; l < R ; l++){
         cout << "For row " << l+1 << "\n";
         for (int k = 0 ; k < C ; k++ ){
@@ -78,23 +67,13 @@ void MATRIX::show_matrix()
 
 MATRIX matrix_add(MATRIX A , MATRIX B)
 {
-    
-    //if (A.C == B.C && A.R == B.R){
-        MATRIX x;
-        x.C = A.C;
-        x.R = A.R;
-        for(int i = 0 ;i < A.R ;i++){
-            for(int j = 0 ; j < A.C ; j++){
-                x.p[i][j] = A.p[i][j] + B.p[i][j];
-            }    
-        }
-        return x ;
-    //}
-    //else{
-    //    cout << "Dimensions differernt cannot add\n";
-    //    MATRIX y(1,1);
-    //    return y;
-    //}
+    MATRIX x(A.R,B.C);
+    for(int i = 0 ;i < 3 ;i++){
+        for(int j = 0 ; j < 3 ; j++){
+            x.p[i][j] = A.p[i][j] + B.p[i][j];
+        }    
+    }
+    return x ;
 }
 
 MATRIX matrix_mult(MATRIX A , MATRIX B)
@@ -118,6 +97,15 @@ MATRIX matrix_mult(MATRIX A , MATRIX B)
         MATRIX y(1,1);
         return y;
     }
+}
+
+int trace(MATRIX A)
+{
+    int tr = 0 ;
+    for(int i = 0; i<A.C ; i++){
+        tr+=A.p[i][i];
+    }
+    return tr;
 }
 
 MATRIX matrix_transpose(MATRIX A)
@@ -160,23 +148,24 @@ int main()
 {
     MATRIX m1;
     m1.create_matrix(3,3);
+    MATRIX m2;
+    m2.create_matrix(3,3);
+    
     cout << "m1 = " ;
     m1.show_matrix();
-    MATRIX m2;
     cout << "m2 = ";
-    m2.create_matrix(3,3) ;
     m2.show_matrix();
-    MATRIX m3,m4,m5;
     cout << "m1 + m2 = " ;
-    m3 = matrix_add(m1,m2);
+    MATRIX m3 = matrix_add(m1,m2);
     m3.show_matrix();
     cout << "m1 X m2 = ";
-    m4 = matrix_mult(m1,m2);
+    MATRIX m4 = matrix_mult(m1,m2);
     m4.show_matrix();
     cout << "m2 transpose = ";
-    m5 = matrix_transpose(m2);
+    MATRIX m5 = matrix_transpose(m2);
     m5.show_matrix();
-
+    cout << "Trace of m1 = " << trace(m1)<<"\n";
+    cout << "Trace of m2 = " << trace(m2)<<"\n";
     return 0 ;
 
 } 
