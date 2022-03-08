@@ -79,9 +79,11 @@ String::String(const char* y)
 
 int main()
 {
-    String A("Welcome ") ;
-    String B("Dev");
+    String A("Welcome to ") ;
+    String B("New ");
+    String G("York");
     String C = concatnate(A,B) ;
+    C = concatnate(C,G) ;
     String D = ("xyz");
     String E = ("Dev") ;
     cout << "A = ";
@@ -90,6 +92,8 @@ int main()
     B.display();
     cout << "C = ";
     C.display();
+    cout << "G = ";
+    G.display();
     cout << "Are they equal ?\n";
     cout << "A and E ";
     isequal(A,E);

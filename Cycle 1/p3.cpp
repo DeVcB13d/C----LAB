@@ -74,7 +74,8 @@ void customer::withdraw(float amount){
 int main()
 {
     customer clist[30];
-    int eno = 1 ; //To help add employees
+    int eno = 1 ; 
+    //To help add customers
     int aclist[30];
     int lcontrol = 0 ;
     int lc = 0 ;

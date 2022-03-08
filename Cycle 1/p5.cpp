@@ -11,7 +11,7 @@ class item{
             price = p;
             code = c;
         }
-        item(){cout << "Called constructor 2\n";}
+        item(){cout << "Called default constructor \n";}
         ~item(){
             cout << "Called a destructor\n";
         }

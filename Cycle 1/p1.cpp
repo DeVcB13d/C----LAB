@@ -67,7 +67,8 @@ void student::display(void){
 
 int main()
 {
-    student* slist;
+    //create a list of student objects
+    atudent* slist;
     int nsts ;
     cout << "Enter the Number of students: ";
     cin >> nsts ;

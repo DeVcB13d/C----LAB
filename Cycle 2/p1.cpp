@@ -111,8 +111,8 @@ int main()
     int l2[8] = {3,4,5,2,5,2};
     Vector A(6,l1),B(6,l2);
 
-    cout << "A <= B ";
     bool z = (A != B) ;
-    cout << z << "\n";
+    cout << (A <= B) << "\n";
+    cout <<(A>=B) << "\n";
     return 0 ;
 }
