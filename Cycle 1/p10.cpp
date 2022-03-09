@@ -22,8 +22,6 @@ class Sitems{
     friend void createbill();
 };
 
-
-
 void Sitems::additem(void){
     cout << "Enter item code: " ;
     cin >> Code_No;
@@ -34,40 +32,11 @@ void Sitems::additem(void){
     cout << "How many ";
     cin >> Nitems;
 }
+void Sitems::deleteitem(int code){}
+void createbill(){} 
 
-void Sitems::deleteitem(int code){
-
-}
-
-void createbill(){
-
-}
-
-
-int main(){
-    Sitems* Slist;
-    
-    cout << "Menu\n" ;
-    cout << "1. Add an item\n2.Delete an item\n";
-    cout << "3. Create bill\n";
-    int ch = 0;
-    while (ch == 0){
-        int choice ;
-        cout << "Pick an option :";
-        cin >> choice ;
-        if (choice == 1){A.additem();}
-        else if (choice == 2){
-            int c ;
-            cout << "Enter item code to delete :";
-            cin >> c ;
-            A.deleteitem(c);
-        }
-        else if (choice == 3){
-            A.createbill();
-        }
-        else{cout << "Invalid option ";}
-        cout << "\nEnter 0 to continue : " ;
-        cin >> ch ;
-    }
-    return 0 ;
+int main()
+{
+    Sitems slist[m];
+    cout << "Menu"
 }

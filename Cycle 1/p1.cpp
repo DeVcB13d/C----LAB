@@ -48,7 +48,7 @@ char student::calcGrade(void){
         grade = 'F';
     }
     else{
-        grade = 'U'
+        grade = 'U';
     }
     return grade ;
 }
@@ -65,7 +65,7 @@ void student::display(void){
 int main()
 {
     //create a list of student objects
-    atudent* slist;
+    student* slist;
     int nsts ;
     cout << "Enter the Number of students: ";
     cin >> nsts ;

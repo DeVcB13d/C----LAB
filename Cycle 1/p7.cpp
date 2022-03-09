@@ -19,6 +19,7 @@ class MATRIX
         friend MATRIX matrix_mult(MATRIX A, MATRIX B);
         friend MATRIX matrix_transpose(MATRIX A);
         friend int trace(MATRIX A);
+        void get_RC();
 };
 
 MATRIX::MATRIX(int r,int c)
@@ -42,9 +43,8 @@ void MATRIX::create_matrix(int r,int c)
     }
 
     for(int l = 0 ; l < R ; l++){
-        cout << "For row " << l+1 << "\n";
+        cout << "Enter " << C << " elements:\n ";
         for (int k = 0 ; k < C ; k++ ){
-            cout << "Enter element " << k + 1 << ": " ;
             cin >>  value ;
             p[l][k] = value ;
         }
@@ -53,7 +53,7 @@ void MATRIX::create_matrix(int r,int c)
 
 void MATRIX::show_matrix()
 {
-    cout << "\n\n";
+    cout << "\n";
     for(int i = 0 ;i < R ;i++){
         for(int j = 0 ; j < C ; j++){
             cout << p[i][j] << " " ;
@@ -67,8 +67,8 @@ MATRIX matrix_add(MATRIX A , MATRIX B)
 {
     if (A.R == B.R && A.C == B.C){
         MATRIX x(A.R,B.C);
-        for(int i = 0 ;i < 3 ;i++){
-            for(int j = 0 ; j < 3 ; j++){
+        for(int i = 0 ;i < A.R ;i++){
+            for(int j = 0 ; j < B.C; j++){
                 x.p[i][j] = A.p[i][j] + B.p[i][j];
             }    
         }
@@ -76,6 +76,8 @@ MATRIX matrix_add(MATRIX A , MATRIX B)
     }
     else{
         cout << "Cannot Add\n";
+        MATRIX X;
+        return X ;
     }
     
 }
@@ -125,11 +127,43 @@ MATRIX matrix_transpose(MATRIX A)
     return X;
 }
 
+void MATRIX::get_RC(){
+    int r1,c1;
+    cout << "Enter Number of Rows :";
+    cin >> r1 ;
+    cout << "Enter Number of Columns :";
+    cin >> c1 ;
+    MATRIX(r1,c1);
+    create_matrix(r1,c1);
+}
 int main()
 {
-
-
-
+    cout << "To create 1st Matrix :\n";
+    MATRIX M1 ;
+    M1.get_RC();
+    cout << "To create 2nd Matrix :\n";
+    MATRIX M2 ;
+    M2.get_RC();
+    cout << "M1 = \n";
+    M1.show_matrix();
+    cout << "M2 = \n";
+    M2.show_matrix();
+    cout << "Adding them : ";
+    MATRIX  M3,M4,M5,M6;
+    M3 = matrix_add(M1,M2);
+    M4 = matrix_mult(M1,M2);
+    M5 = matrix_transpose(M1);
+    M6 = matrix_transpose(M2);
+    cout << "M1 + M2  = ";
+    M3.show_matrix();
+    cout << "M1 X M2  = ";
+    M4.show_matrix();
+    cout << "M1 Transpose = ";
+    M5.show_matrix();
+    cout << "M2 Transpose = ";
+    M6.show_matrix();
+    cout << "M1 Trace = " << trace(M1) << endl;
+    cout << "M2 Trace = " << trace(M2) << endl;
 
 
 } 

@@ -15,6 +15,7 @@ class String{
     public:
         String(const char *x);
         String(){}
+        void gs(){cin >> str;}
         friend void isequal(String A, String B);
         friend String concatnate(String A , String B);
         friend int length(String A){return A.l;}
@@ -76,6 +77,10 @@ String::String(const char* y)
     l = len(y);
     str = new char[l+1];
     strcpy(str,y);
+    for(int i = 0 ; i < l ; i++){
+        str[i] = y[i];
+    }
+
 }
 
 int main()
