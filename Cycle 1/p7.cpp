@@ -27,9 +27,9 @@ MATRIX::MATRIX(int r,int c)
 {
     R = r ;
     C = c ;
-    p = new int*[R+2];
+    p = new int*[R+1];
     for (int i = 0;i<C;i++){
-        p[i] = new int[C+2] ;
+        p[i] = new int[C+1] ;
     }
 }
 
@@ -46,7 +46,7 @@ void MATRIX::create_matrix(int r,int c)
     for(int l = 0 ; l < R ; l++){
         cout << "For row " << l+1 << "\n";
         for (int k = 0 ; k < C ; k++ ){
-            cout << "Enter element " << k + 1 << ": " ;
+  
             cin >>  value ;
             p[l][k] = value ;
         }
@@ -146,6 +146,7 @@ int MATRIX::matrix_determinant(MATRIX X)
 
 int main()
 {
+    //GET inputs for size
     MATRIX m1;
     m1.create_matrix(3,3);
     MATRIX m2;

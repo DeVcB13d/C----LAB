@@ -59,10 +59,10 @@ void isequal(String A ,String B){
                 s++;
             }
         }
-        if (s== A.l){cout<<"\nsame";}
-        else{cout << "\nDifferent";}
+        if (s == A.l){cout<<"\nsame\n";}
+        else{cout << "\nDifferent\n";}
     }
-    else{cout<<"\ndifferent" ;}
+    else{cout<<"\ndifferent\n" ;}
     
 }
 
@@ -76,7 +76,7 @@ String::String(const char* y)
         str[i] = y[i];
     }
 }
-
+//get user input
 int main()
 {
     String A("Welcome to ") ;
@@ -85,7 +85,7 @@ int main()
     String C = concatnate(A,B) ;
     C = concatnate(C,G) ;
     String D = ("xyz");
-    String E = ("Dev") ;
+    String E = ("New ") ;
     cout << "A = ";
     A.display();
     cout << "B = ";
@@ -95,10 +95,10 @@ int main()
     cout << "G = ";
     G.display();
     cout << "Are they equal ?\n";
-    cout << "A and E ";
-    isequal(A,E);
-    cout << "\nA and C ";
-    isequal(A,C);
+    cout << "B and E ";
+    isequal(B,E);
+    cout << "\nD and E ";
+    isequal(D,E);
 
     return 0 ;
 }

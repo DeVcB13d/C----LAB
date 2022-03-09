@@ -35,9 +35,9 @@ complex add(complex A , complex B){
 
 int main(){
     complex x,y,z ;
-    cout << "Enter x: \n" ;
+    cout << "Enter complex num1: \n" ;
     x.getnums();
-    cout << "Enter y: \n" ;
+    cout << "Enter complex num2: \n" ;
     y.getnums();
     z = add(x,y) ;
     cout << "x = ";

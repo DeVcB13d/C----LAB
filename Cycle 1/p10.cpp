@@ -9,7 +9,7 @@
 #include<cstring>
 using namespace std ;
 const int m = 20 ;
-
+//use Array of objects
 class Slist{
     int Code_No[m] ;
     string name[m] ;
