@@ -102,7 +102,7 @@ int main()
     cout << "Concatenating them : \n";
     String S3 = concatnate(S1,S2);
     S3.display();
-    cout << "Enter a text : " ;
+    cout << "Enter a text S4: " ;
     char* z = new char[m];
     cin >> z ;
     String S4(z);
