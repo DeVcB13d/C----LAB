@@ -7,7 +7,7 @@
 #include<iostream>
 #include<string>
 using namespace std ;
-
+const int m = 30 ;
 
 
 class customer{
@@ -24,7 +24,9 @@ class customer{
         void withdraw(float amount);
         void deposit(float amount){
             balance = balance + amount ;
+            cout << "\nDeposit Successful\n";
             cout << "Balance : " << balance<< endl ;
+
         }
         void balance_enq(){
             cout << cust_name << "\n";
@@ -47,6 +49,7 @@ void customer::addacc(){
     cin >> acc_type;
     cout << "Enter the account balance : " ;
     cin >> balance;
+    cout << ".\n.\nAccount Successfully Created\n\n";
     count++ ;
 }
 //To get the account statement
@@ -54,14 +57,14 @@ void customer::acc_state(void){
     cout << "NAME      :" << cust_name << "\n" ;
     cout << "AC NUMBER :" << acc_no << "\n";
     cout << "AC TYPE   :" << acc_type<< "\n";
-    cout << "BALANCE   :" << balance<< "\n";
+    cout << "BALANCE   :" << balance<< "\n\n";
 }
 //withdraw
 void customer::withdraw(float amount){
     
     if (amount < (balance - 500)){
         balance -= amount ;
-        cout << "Success!!!\ncurrent balance is"<< balance <<endl; 
+        cout << "Success!!!\ncurrent balance is "<< balance <<endl; 
     }
     else if (amount > balance ){
         cout << "Insufficient Balance "<<balance<<" withdrawal not possible"<<endl;}
@@ -73,7 +76,7 @@ void customer::withdraw(float amount){
 
 int main()
 {
-    customer clist[30];
+    customer clist[m];
     int eno = 1 ; 
     int lcontrol = 0 ;
     int lc = 0 ;
@@ -100,7 +103,7 @@ int main()
             cout << "Enter your Account number :" ;
             cin >> RefNo ;
             int Rcheck = 0;
-            for(int i=0;i<30;i++){
+            for(int i=0;i < eno;i++){
                 if (clist[i].getAC()==RefNo){
                     C_index = i ;
                     Rcheck = 1 ;
@@ -128,7 +131,10 @@ int main()
                 }
             }
         }
-        else if(ch == 6){lc = 31;}
+        else if(ch == 6){
+            cout << "\nThanks for using !!\n";
+            lc = 31;
+        }
         else{cout << "Invalid option\n";}
         lc++;
     }

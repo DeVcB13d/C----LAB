@@ -15,6 +15,7 @@ class String{
     public:
         String(const char *x);
         String(){}
+        void gs(){cin >> str;}
         friend void isequal(String A, String B);
         friend String concatnate(String A , String B);
         friend int length(String A){return A.l;}
@@ -75,7 +76,6 @@ String::String(const char* y)
 {
     l = strlen(y);
     str = new char[l+1];
-    cout << "Hi\n";
     for(int i = 0 ; i < l ; i++){
         str[i] = y[i];
     }
@@ -84,12 +84,6 @@ String::String(const char* y)
 int main()
 {
     cout << "Enter a text : " ;
-    char* x ;
-    cin >> x ;
-    cout << "Enter a text : " ;
-    char* y ;
-    cin >> y ;
-    String A(x);
-    String B(y);
+    String B();
     return 0 ;
 }

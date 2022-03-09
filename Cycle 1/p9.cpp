@@ -8,24 +8,47 @@ class students{
     static int count ;
     string name ;
     public:
-    students(){count++;}
     void getname(){
         cout << "ENTER NAME : ";
         cin >> name ; 
+        count++;
     }
     static void showcount(){
         cout << "The number of objects created are " << count << "\n";
     }
 };
-int students::count;
+int students::count = 0;
 
-int main(){
-    students A , B ;
-    A.getname();
-    B.getname();
-    students::showcount();
-    students C ;
-    C.getname();
-    students::showcount();
-    return 0 ;
+int main()
+{
+    cout << "MENU : \n";
+    cout << "1 Add an object\n";
+    cout << "2 Number of objects created\n";
+    cout << "3 Exit\n";
+    students slist[10];
+    int choice = 0 ;
+    int i = 0 ;
+    while(choice != 3)
+    {
+        cout << "Enter a choice :";
+        cin >> choice ;
+        if (choice == 1)
+        {
+            slist[i].getname();
+            i++;
+        }
+        else if (choice == 2)
+        {
+            slist[i].showcount();
+        }
+        else if (choice == 3)
+        {
+            choice = 3 ;
+        }
+        else
+        {
+            cout << "Invalid option\n";
+        }
+    }
 }
+

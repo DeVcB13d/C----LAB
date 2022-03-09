@@ -55,8 +55,9 @@ int main(){
     int lc = 0 ;
     while (lc == 0){
         int choice;
-        cout << "Pick a shape to find area :";
+        cout << "\n\nPick a shape to find area :";
         cin >> choice ;
+        cout << "\n\n";
         if (choice == 1){
             int L,B ;
             cout << "Enter Length and Breadth :";

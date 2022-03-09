@@ -25,13 +25,13 @@ class complex{
             else {cout << real << " - "<<(-1)* imag <<" i" "\n";}
         
         }
-        friend complex add(complex ,complex) ;
+        complex add(complex) ;
 };
 
-complex add(complex A,complex B){
+complex complex::add(complex A){
     complex C ;
-    C.real = A.real + B.real ;
-    C.imag = A.imag + B.imag ;
+    C.real = A.real + real ;
+    C.imag = A.imag + imag ;
     return C ;
 }
 
@@ -49,7 +49,7 @@ int main()
     cin >> rp ;
     complex Y = complex(rp) ;
     complex Z;
-    Z = add(X,Y);
+    Z = Y.add(X);
     cout << "X = " ;
     X.show();
     cout << "Y = " ;
