@@ -8,12 +8,12 @@ class class_2;
 class class_1{
     int a1 ;
     public:
-        void add(){
-			cout << "Enter Class 1-> x ";
-            cin >> a1;
+        void add(void){
+            cout << "Enter member a1 : ";
+            cin >> a1 ;
         }
         void show(void){
-            cout << a1 << "," ;
+            cout << a1 << "  " ;
         }
         friend void swap(class_1 &x , class_2 &y) ;
 };
@@ -21,12 +21,12 @@ class class_1{
 class class_2{
     int a2 ;
     public:
-        void add(){
-            cout << "Enter Class 1-> y ";
+        void add(void){
+            cout << "Enter member a2 : ";
             cin >> a2 ;
         }
         void show(void){
-            cout << a2 << ",";
+            cout << a2 << "  ";
         }
         friend void swap(class_1 &x , class_2 &y) ;
 };
@@ -44,11 +44,15 @@ int main()
     A.add();
     B.add();
     cout << "Before swapping :\n";
+    cout <<"class_1 A = ";
     A.show();
+    cout << "class 2 B = ";
     B.show();
     swap(A,B);
     cout << "\nAfter swapping :\n";
+    cout <<"class_1 A = ";
     A.show();
+    cout << "class 2 B = ";
     B.show();
     cout << "\n";
     return 0 ;

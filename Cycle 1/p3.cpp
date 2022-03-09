@@ -75,7 +75,6 @@ int main()
 {
     customer clist[30];
     int eno = 1 ; 
-    //To help add customers
     int lcontrol = 0 ;
     int lc = 0 ;
     cout << "   \nWELCOME  " << "\n" ;
@@ -94,39 +93,39 @@ int main()
         cout << "\n\n" ;
         if (ch==1){
             clist[eno].addacc(); 
-            aclist[eno] = clist[eno].getAC();
             eno++;
         }
-        else if(ch>=2 && ch <= 5){//restructure
+        else if(ch>=2 && ch <= 5){
             int RefNo,C_index;
             cout << "Enter your Account number :" ;
             cin >> RefNo ;
-			int ctrl = 0;
+            int Rcheck = 0;
             for(int i=0;i<30;i++){
-                if (clist.getAC()==RefNo){
+                if (clist[i].getAC()==RefNo){
                     C_index = i ;
-					ctrl = 1 ;
+                    Rcheck = 1 ;
                 }
-				if (ctrl == 0){cout << "Incorrect ID";
-					}
             }
-            if(ch == 2){
-                clist[C_index].acc_state();
-            }
-            else if(ch==3){
-                float amt ;
-                cout << "Enter the amount to deposit: ";
-                cin >> amt; 
-                clist[C_index].deposit(amt);
-            }
-            else if(ch==4){
-                float amt ;
-                cout << "Enter the amount to withdraw: ";
-                cin >> amt; 
-                clist[C_index].withdraw(amt);
-            }
-            else if(ch == 5){
-                clist[C_index].balance_enq();
+            if (Rcheck == 0){cout << "Invalid Account";}
+            else {
+                if(ch == 2){
+                    clist[C_index].acc_state();
+                }
+                else if(ch==3){
+                    float amt ;
+                    cout << "Enter the amount to deposit: ";
+                    cin >> amt; 
+                    clist[C_index].deposit(amt);
+                }
+                else if(ch==4){
+                    float amt ;
+                    cout << "Enter the amount to withdraw: ";
+                    cin >> amt; 
+                    clist[C_index].withdraw(amt);
+                }
+                else if(ch == 5){
+                    clist[C_index].balance_enq();
+                }
             }
         }
         else if(ch == 6){lc = 31;}

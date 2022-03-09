@@ -44,15 +44,12 @@ char student::calcGrade(void){
     else if(avg <= 60 && avg > 40){
         grade = 'C';
     }
-    else if(avg <= 40 && avg > 20){//below 50 grade F
-        grade = 'D';
-    }
-    else if(avg <= 20){
-        grade = 'E';
+    else if(avg <= 40 && avg >= 0){
+        grade = 'F';
     }
     else{
-        grade = 'F';
-    };
+        grade = 'U'
+    }
     return grade ;
 }
 
@@ -68,7 +65,7 @@ void student::display(void){
 int main()
 {
     //create a list of student objects
-    student* slist;
+    atudent* slist;
     int nsts ;
     cout << "Enter the Number of students: ";
     cin >> nsts ;

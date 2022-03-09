@@ -9,72 +9,44 @@
 #include<cstring>
 using namespace std ;
 const int m = 20 ;
-//use Array of objects
-class Slist{
-    int Code_No[m] ;
-    string name[m] ;
-    float price[m] ;
-    int Nitems[m];
-    int count;
+
+class Sitems{
+    int Code_No ;
+    string name ;
+    float price ;
+    int Nitems; 
     public:
-    void setcount(){count = 0;}
     void additem(void);
     void deleteitem(int);
-    float getprice(void){
-            float total = 0;
-            for (int i = 0 ; i<count ; i++){
-                total+=(price[i]*Nitems[i]);
-            }
-            return total ;
-        }
-    void createbill();
+    float getprice(void);
+    friend void createbill();
 };
 
 
 
-void Slist::additem(void){
+void Sitems::additem(void){
     cout << "Enter item code: " ;
-    cin >> Code_No[count];
+    cin >> Code_No;
     cout << "Enter item name: " ;
-    cin >> name[count] ;
+    cin >> name ;
     cout << "Enter item price: " ;
-    cin >> price[count] ;
+    cin >> price ;
     cout << "How many ";
-    cin >> Nitems[count];
-    count++;
+    cin >> Nitems;
 }
 
-void Slist::deleteitem(int code){
-    int index;
-    for(int i = 0 ; i < count ; i++){
-        if (Code_No[i] == code){
-            index = i;
-        }
-    }
-    for(int j = index;j<count ;j++ ){
-        Code_No[j] = Code_No[j-1];
-        name[j] = name[j+1];
-        price[j] = price[j+1];
-        Nitems[j] = Nitems[j+1];
-    }
-    count--;
-    cout << "Deleted successfully !!\n";
+void Sitems::deleteitem(int code){
+
 }
 
-void Slist::createbill(){
-    cout <<"No\tCode\tName  \tPrice\tCost\n";
-    for(int j = 0; j <count ; j++){
-        cout << j << " \t" << Code_No[j] << "\t";
-        cout << name[j] << "\t" << price[j] << "\t";
-        cout << Nitems[j] << "\n";
-    }
-    cout << "\nTotal price = " << getprice() << endl;
+void createbill(){
+
 }
 
 
 int main(){
-    Slist A ;
-    A.setcount();
+    Sitems* Slist;
+    
     cout << "Menu\n" ;
     cout << "1. Add an item\n2.Delete an item\n";
     cout << "3. Create bill\n";

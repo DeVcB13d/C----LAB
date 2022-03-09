@@ -35,29 +35,63 @@ float area (double r){
     return (3.14*r*r);
 }
 
-//CSA of cylinder 
-float area(double r ,double h)
+//CSA of cone 
+float area(double r ,double l)
 {
-    cout << "CSA of a cylinder \n";
-    return 3.14*r*r*h ;
+    cout << "CSA of cone \n";
+    return 3.14*r*l ;
 }
-//give user input
+
 
 int main(){
-	cout << "MENU" << "\n" ;
-	cout << "1. Area of rectangle\n";
-	cout << "2. Area of Square   \n";
-	cout << "3. Area of Triangle \n";
-	cout << "4. Area of Circle   \n";
-	cout << "5. CSA of cylinder  \n";
-	cout << "Choose an option";
-	int choice ;
-	cin >> choice ;
-	switch choice
-	case 1
-    cout << area(4) << "\n\n" ;
-    cout << area(5.45,6.74) << "\n\n" ;
-    cout << area(4.00,5.7,6.9) << "\n\n" ;
-    cout << area(7.67) << "\n\n" ;
+    cout << "MENU\n";
+    cout << "1. Rectangle\n";
+    cout << "2. Square\n";
+    cout << "3. Triangle\n";
+    cout << "4. Circle\n";
+    cout << "5. CSA of cone\n";
+    cout << "6. To Exit\n";
+    
+    int lc = 0 ;
+    while (lc == 0){
+        int choice;
+        cout << "Pick a shape to find area :";
+        cin >> choice ;
+        if (choice == 1){
+            int L,B ;
+            cout << "Enter Length and Breadth :";
+            cin >> L >> B ;
+            cout <<area(L,B) << "\n";
+        }
+        else if (choice == 2){
+            int Sl;
+            cout << "Enter side length : ";
+            cin >> Sl ;
+            cout<<area(Sl)<<"\n";
+        }
+        else if (choice == 3){
+            float A,B,C ;
+            cout << "Enter the 3 sides :";
+            cin >> A >> B >> C ;
+            cout<<area(A,B,C)<<"\n";
+        }
+        else if (choice == 4){
+            double R;
+            cout << "Enter the Radius : ";
+            cin >> R;
+            cout<<area(R)<<"\n";
+        }
+        else if (choice == 5){
+            double R,L;
+            cout << "Enter Radius and slanting length : ";
+            cin >> R >> L;
+            cout<<area(R,L)<<"\n";
+        }
+        else if (choice == 6){
+            cout << "Thanks\n";
+            lc = 1 ;
+        }
+        else{cout << "Invalid option";}
+    }
     return 0 ;
 }

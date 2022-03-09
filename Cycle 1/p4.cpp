@@ -1,5 +1,8 @@
-/*Write a C++ progtram to perform operations such as compare,
-concatenate and length on String objects*/
+/*
+Write a C++ progtram to perform operations such as compare,
+concatenate and length on String 
+*/
+
 #include <iostream>
 #include <cstring>
 using namespace std ;
@@ -59,10 +62,10 @@ void isequal(String A ,String B){
                 s++;
             }
         }
-        if (s == A.l){cout<<"\nsame\n";}
-        else{cout << "\nDifferent\n";}
+        if (s== A.l){cout<<"\nsame";}
+        else{cout << "\nDifferent";}
     }
-    else{cout<<"\ndifferent\n" ;}
+    else{cout<<"\ndifferent" ;}
     
 }
 
@@ -70,35 +73,23 @@ void isequal(String A ,String B){
 
 String::String(const char* y)
 {
-    l = len(y);
+    l = strlen(y);
     str = new char[l+1];
+    cout << "Hi\n";
     for(int i = 0 ; i < l ; i++){
         str[i] = y[i];
     }
 }
-//get user input
+
 int main()
 {
-    String A("Welcome to ") ;
-    String B("New ");
-    String G("York");
-    String C = concatnate(A,B) ;
-    C = concatnate(C,G) ;
-    String D = ("xyz");
-    String E = ("New ") ;
-    cout << "A = ";
-    A.display();
-    cout << "B = ";
-    B.display();
-    cout << "C = ";
-    C.display();
-    cout << "G = ";
-    G.display();
-    cout << "Are they equal ?\n";
-    cout << "B and E ";
-    isequal(B,E);
-    cout << "\nD and E ";
-    isequal(D,E);
-
+    cout << "Enter a text : " ;
+    char* x ;
+    cin >> x ;
+    cout << "Enter a text : " ;
+    char* y ;
+    cin >> y ;
+    String A(x);
+    String B(y);
     return 0 ;
 }
