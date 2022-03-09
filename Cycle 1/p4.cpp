@@ -1,6 +1,6 @@
 /*
 Write a C++ progtram to perform operations such as compare,
-concatenate and length on String 
+concatenate and length on String objects
 */
 
 #include <iostream>
@@ -73,23 +73,38 @@ void isequal(String A ,String B){
 
 String::String(const char* y)
 {
-    l = strlen(y);
+    l = len(y);
     str = new char[l+1];
-    cout << "Hi\n";
-    for(int i = 0 ; i < l ; i++){
-        str[i] = y[i];
-    }
+    strcpy(str,y);
 }
 
 int main()
 {
     cout << "Enter a text : " ;
-    char* x ;
+    char* x = new char[m];
     cin >> x ;
     cout << "Enter a text : " ;
-    char* y ;
+    char* y = new char[m];
     cin >> y ;
-    String A(x);
-    String B(y);
+    String S1(x);
+    String S2(y);
+    delete x ;
+    delete y ;
+    cout << "S1 = ";
+    S1.display();
+    cout << "S2 = ";
+    S2.display();
+    cout << "Concatenating them : \n";
+    String S3 = concatnate(S1,S2);
+    S3.display();
+    cout << "Enter a text : " ;
+    char* z = new char[m];
+    cin >> z ;
+    String S4(z);
+    delete z ; 
+    cout << "Are S4 and S2 equal ? : \n";
+    S4.display();
+    S2.display();
+    isequal(S4,S2);
     return 0 ;
 }
