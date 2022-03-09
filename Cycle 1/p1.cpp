@@ -44,15 +44,12 @@ char student::calcGrade(void){
     else if(avg <= 60 && avg > 40){
         grade = 'C';
     }
-    else if(avg <= 40 && avg > 20){
-        grade = 'D';
-    }
-    else if(avg <= 20){
-        grade = 'E';
+    else if(avg <= 40 && avg >= 0){
+        grade = 'F';
     }
     else{
-        grade = 'F';
-    };
+        grade = 'U'
+    }
     return grade ;
 }
 

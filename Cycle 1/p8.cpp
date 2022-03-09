@@ -38,14 +38,22 @@ complex add(complex A,complex B){
 
 int main()
 {
-    complex X = complex(1.2,3.6);
-    complex Y = complex(-3.6) ;
+    cout << "Enter Real part : ";
+    float rp ;
+    cin >> rp ;
+    cout << "Enter imaginary part : ";
+    float imp ;
+    cin >> imp ;
+    complex X = complex(rp,imp);
+    cout << "Enter real and imainary parts : ";
+    cin >> rp ;
+    complex Y = complex(rp) ;
     complex Z;
     Z = add(X,Y);
     cout << "X = " ;
     X.show();
     cout << "Y = " ;
     Y.show();
-    cout << "Z = " ;
+    cout << "Z = X + Y =  " ;
     Z.show();
 }
