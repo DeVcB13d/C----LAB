@@ -63,10 +63,10 @@ void isequal(String A ,String B){
                 s++;
             }
         }
-        if (s== A.l){cout<<"\nsame";}
-        else{cout << "\nDifferent";}
+        if (s== A.l){cout<<"\nsame\n";}
+        else{cout << "\nDifferent\n";}
     }
-    else{cout<<"\ndifferent" ;}
+    else{cout<<"\ndifferent\n" ;}
     
 }
 

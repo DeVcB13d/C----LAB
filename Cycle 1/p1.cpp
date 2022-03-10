@@ -23,7 +23,7 @@ void student::input(void){
     cin >> Name ;
     cout << "Enter the Roll No : "<< endl ;
     cin >> Roll_no ;
-    cout << "Enter marks in subject 1 "<< endl;
+    cout << "Enter marks in subject 1 " << endl;
     cin >> s1 ;
     cout << "Enter marks in subject 2 " << endl;
     cin >> s2 ;

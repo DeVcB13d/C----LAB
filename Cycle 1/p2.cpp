@@ -24,7 +24,7 @@ float area(int a){
 float area(float a , float b , float c){
     cout << "Area of a triangle\n";
     float s = ( a + b + c ) / 2 ;
-    int ar = sqrt(s*(s-a)*(s-b)*(s-c));
+    float ar = sqrt(s*(s-a)*(s-b)*(s-c));
     return ar ;
 
 }

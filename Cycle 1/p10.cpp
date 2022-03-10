@@ -1,53 +1,142 @@
-//Write a C++ program using class to process shopping list for a DepartmentalStore. 
-//The list include details such as the Code-no and price of each item and
-//perform the operations like adding & deleting items to the list and printing the
-//total value of an order.
+// Write a C++ program using class to process shopping list for a DepartmentalStore.
+// The list include details such as the Code-no and price of each item and
+// perform the operations like adding & deleting items to the list and printing the
+// total value of an order.
 
-//Not complete
+// Not complete
 
-#include<iostream>
-#include<cstring>
-using namespace std ;
-const int m = 20 ;
+#include <iostream>
+#include <cstring>
+using namespace std;
 
-class Sitems{
-    int Code_No ;
-    string name ;
-    float price ;
-    int Nitems; 
-    static int inums;
-    public:
+const int m = 20;
+
+
+class Sitems
+{
+    int Code_No;
+    string name;
+    float price;
+    int Nitems;
+
+public:
+    void copy(const Sitems &A);
+    int getcode(void) { return Code_No; }
     void additem(void);
-    void deleteitem(int);
+    friend void deleteitem(int, int);
     float getprice(void);
-    friend void createbill();
+    friend void createbill(int);
 };
-int Sitems::inums = 0 ;
-void Sitems::additem(void){
-    cout << "Enter item code: " ;
+
+
+//Global variable to have item numbers
+int inum2 = 0;
+Sitems slist[m];
+
+void Sitems::copy(const Sitems &A)
+{
+    Code_No = A.Code_No;
+    name = A.name;
+    price = A.price;
+    Nitems = A.Nitems;
+}
+
+
+void Sitems::additem(void)
+{
+    cout << "Enter item code: ";
     cin >> Code_No;
-    cout << "Enter item name: " ;
-    cin >> name ;
-    cout << "Enter item price: " ;
-    cin >> price ;
+    cout << "Enter item name: ";
+    cin >> name;
+    cout << "Enter item price: ";
+    cin >> price;
     cout << "Amount of items: ";
     cin >> Nitems;
 }
-void Sitems::deleteitem(int code){}
-void createbill(){} 
+
+
+void deleteitem(int code, int &enums)
+{
+    int Rcode;
+    int rcheck = 0;
+    // To search and return the index
+    for (int i = 0; i < enums; i++)
+    {
+        if (slist[i].getcode() == code)
+        {
+            Rcode = i;
+            rcheck = 1;
+        }
+    }
+    if (rcheck == 1)
+    {
+        for (int j = Rcode; j < enums; j++)
+        {
+            slist[j].copy(slist[j + 1]);
+        }
+        enums--;
+        cout << "Successfull !!!\n";
+    }
+    else 
+    {
+        cout << "Invalid Code\n";
+    }
+}
+
+void createbill(int inum)
+{
+    float total = 0 ;
+    cout << "\n\nICode\tIName\tIprice\tItems\n";
+    for(int i = 0; i < inum2; i++)
+    {
+        cout << slist[i].Code_No << "\t";
+        cout << slist[i].name<<"\t";
+        cout << slist[i].price<<"\t";
+        cout << slist[i].Nitems<<"\t";
+        cout << "\n";
+        total += (slist[i].price * slist[i].Nitems);
+    }
+    cout << "\nTotal Price = " << total << "\n" ;
+    
+}
+
 
 int main()
 {
-    Sitems slist[m];
-    cout << "Menu" ;
+    cout << "\n\nMenu\n\n";
     cout << "1. To Add items\n";
     cout << "2. To Delete items\n";
     cout << "3. To Create a bill\n";
-    int choice = 0 ;
+    cout << "4. Exit\n";
+    int choice = 0;
     while (choice != 4)
     {
-        cout << "Pick an option : ";
+        cout << "\n\nPick an option : ";
         cin >> choice;
-        if ()
+        if (choice == 1)
+        {
+            slist[inum2].additem();
+            inum2++;
+        }
+        else if (choice == 2)
+        {
+            cout << "Enter item code to delete : "
+                 << "\n";
+            int icode;
+            cin >> icode;
+            deleteitem(icode, inum2);
+        }
+        else if (choice == 3)
+        {
+            createbill(inum2);
+        }
+        else if (choice == 4)
+        {
+            cout << "Thanks for using!!!\n";
+        }
+        else
+        {
+            cout << "Invalid option\nTry again";
+        }
     }
 }
