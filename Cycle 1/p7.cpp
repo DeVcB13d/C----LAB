@@ -20,7 +20,7 @@ class MATRIX
         friend MATRIX matrix_transpose(MATRIX& A);
         friend int trace(MATRIX& A);
         void get_RC();
-        //~MATRIX();
+        ~MATRIX();
 };
 
 MATRIX::MATRIX(int r,int c)
@@ -126,7 +126,7 @@ MATRIX matrix_transpose(MATRIX& A)
     }
     return X;
 }
-/*
+
 MATRIX::~MATRIX()
 {
     for(int i=0;i<R;i++){
@@ -135,7 +135,7 @@ MATRIX::~MATRIX()
     delete p ;
     cout << "Destructor called \n";
 }
-*/
+
 
 void MATRIX::get_RC(){
     int r1,c1;
@@ -146,14 +146,11 @@ void MATRIX::get_RC(){
 }
 int main()
 {
-
+    MATRIX M1,M2,M3,M4,M5,M6;
     cout << "To create 1st Matrix :\n";
-    MATRIX M1 ;
     M1.get_RC();
     cout << "To create 2nd Matrix :\n";
-    MATRIX M2 ;
     M2.get_RC();
-
     cout << "M1 = \n";
     M1.show_matrix();
     cout << "M2 = \n";
@@ -167,30 +164,25 @@ int main()
         cout << "Choose :";
         cin >> choice ;
         if (choice == 1){
-            MATRIX  M3;
             M3 = matrix_add(M1,M2);
             cout << "M1 + M2  = ";
             M3.show_matrix();
         }
         else if (choice == 2)
         {
-            MATRIX M4;
             M4 = matrix_mult(M1,M2);
             cout << "M1 X M2  = ";
             M4.show_matrix();
         }
         else if (choice == 3)
         {
-            MATRIX M5,M6;
             M5 = matrix_transpose(M1);
             M6 = matrix_transpose(M2);
             cout << "M1 Transpose = ";
             M5.show_matrix();
             cout << "M2 Transpose = ";
             M6.show_matrix();
-
         }
-
         else if (choice == 4)
         {
             cout << "M1 Trace = " << trace(M1) << endl;
