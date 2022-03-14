@@ -16,9 +16,9 @@ class complex
             real = r ; imag = l ;
         }
         void show(){
-            if (imag>0)
+            if (imag>=0)
                 {cout<<real<<" + "<<imag<<"i\n";}
-            else{cout<<real<<" - "<<imag<<"i\n";}
+            else{cout<<real<<" - "<<-imag<<"i\n";}
         }
         friend complex operator+(complex,complex);
         friend complex operator*(complex,complex); 
@@ -42,7 +42,14 @@ complex operator*(complex A,complex B)
 
 int main()
 {
-    complex A(1,3),B(2,5);
+    cout << "Enter real and imaginary parts\n";
+    float a1,b1,a2,b2;
+    cout << "For A :";
+    cin >> a1 >> b1 ;
+    complex A(a1,b1);
+    cout << "For B :";
+    cin >> a2 >> b2 ;
+    complex B(a2,b2);
     complex C,D ;
     C = A + B ;
     D = A * B ;

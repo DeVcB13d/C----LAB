@@ -33,38 +33,52 @@ Vector::Vector(int z,int* k)
     size = z ;
     Varr = new int[size+1];
     for(int i = 0 ; i<z ; i++){
-        k[i] = Varr[i];
+        Varr[i] = k[i];
     }
 }
 
 bool operator==(Vector x,Vector y)
 {
-    bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] != y.Varr[j]){
-            ret = false;
+    bool ret;
+    if (x.size == y.size){
+        ret = true;
+        for(int j = 0 ; j < x.size ; j++){
+            if(x.Varr[j] != y.Varr[j]){
+                ret = false;
+                break;
+            }
         }
     }
+    else ret = false;
     return ret;
 }
 
 bool operator!=(Vector x,Vector y)
 {
-    bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] != y.Varr[j]){
-            ret = true;
+    bool ret;
+    if (x.size == y.size){
+        ret = false;
+        for(int j = 0 ; j < x.size ; j++){
+            if(x.Varr[j] != y.Varr[j]){
+                ret = true;
+                break;
+            }
         }
     }
+    else ret = true;
     return ret;
 }
 
 bool operator<=(Vector x,Vector y)
 {
     bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] >= y.Varr[j]){
+    x.display();
+    y.display();
+    int ctrl = 0;
+    for(int j = 0 ; (j < x.size && ctrl == 0); j++){
+        if(x.Varr[j] > y.Varr[j]){
             ret = false;
+            ctrl = 1;
         }
     }
     return ret;
@@ -73,9 +87,12 @@ bool operator<=(Vector x,Vector y)
 bool operator>=(Vector x,Vector y)
 {
     bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] <= y.Varr[j]){
+    int ctrl = 0;
+    for(int j = 0 ; (j < x.size && ctrl == 0); j++){
+        if(x.Varr[j] < y.Varr[j]){
+            cout << x.Varr[j] << "\n";
             ret = false;
+            ctrl = 1;
         }
     }
     return ret;
@@ -107,12 +124,11 @@ bool operator>(Vector x,Vector y)
 
 int main()
 {
-    int l1[6] = {1,3,4,4,2,1};
-    int l2[8] = {3,4,5,2,5,2};
+    int l1[6] = {1,2,3,4,5,6};
+    int l2[6] = {-1,3,3,1,1,1};
     Vector A(6,l1),B(6,l2);
 
-    bool z = (A != B) ;
     cout << (A <= B) << "\n";
-    cout <<(A>=B) << "\n";
+    cout << (A >=B) << "\n";
     return 0 ;
 }

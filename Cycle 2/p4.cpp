@@ -29,10 +29,9 @@ matrix::matrix(int r,int c)
 }
 
 void matrix::create_matrix(){
-    for(int i = 0 ; i < R ; i++){
-        cout << "For row " << i+1 << "\n";
-        for(int j = 0; j < C; j++){
-            cout << "Enter elem " << j+1 << ": ";
+    cout<<"Enter "<<C<<"X"<<R<<" elements \n";
+    for(int i = 0 ; i < C ; i++){
+        for(int j = 0; j < R; j++){
             int e ;
             cin >> e ;
             p[i][j] = e ;
@@ -41,8 +40,8 @@ void matrix::create_matrix(){
 }
 
 void matrix::show_matrix(){
-    for(int i = 0 ; i < R ; i++){
-        for(int j = 0; j < C; j++){
+    for(int i = 0 ; i < C ; i++){
+        for(int j = 0; j < R; j++){
             cout << p[i][j] << " " ;
         }
         cout << "\n" ;
@@ -50,17 +49,25 @@ void matrix::show_matrix(){
 }
 
 matrix operator+ (matrix A , matrix B){
-    matrix e(A.R,A.C);
-    for(int i = 0 ; i < e.R ; i++){
-        for(int j = 0; j < e.C; j++){
-            e.p[i][j] = A.p[i][j] + B.p[i][j]; 
+    
+    if (A.R == B.R && A.C == B.C){ 
+        matrix e(A.R,A.C);
+        for(int i = 0 ; i < e.R ; i++){
+            for(int j = 0; j < e.C; j++){
+                e.p[i][j] = A.p[i][j] + B.p[i][j]; 
+            }
         }
+        return e ;    
     }
-    return e ;    
+    else {
+        cout << "Incompatible dimensions\n";
+    }
+    
 }
 
 matrix operator* (matrix A, matrix B)
 {
+    if (A.C == B.R){
         matrix x(A.R,B.C);
         for(int i = 0 ;i < A.R ;i++){
             for(int j = 0 ; j < B.C ; j++){
@@ -72,15 +79,25 @@ matrix operator* (matrix A, matrix B)
             }    
         }
         return x ;
+    }
+    else{
+        cout << "Incompatible Dimensions\n";
+    }
+    
 }
 
 int main()
 {
-    matrix A(3,3);
-    matrix B(3,3);
+    cout << "Enter rows and columns for matrix 1 :";
+    int r1,r2,c1,c2;
+    cin >> r1 >> c1 ;
+    matrix A(r1,c1);
     A.create_matrix();
+    cout << "Enter rows and columns for matrix 2 :";
+    cin >> r2 >> c2 ;
+    matrix B(r2,c2);
     B.create_matrix();
-    cout << "A = \n";
+    cout << "\n\nA = \n";
     A.show_matrix();
     cout << "\n";
     cout << "B = \n";

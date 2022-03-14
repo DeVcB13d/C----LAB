@@ -20,8 +20,7 @@ class student
         }
         void show_student_details(void)
         {
-            cout << "Name    : " << Name << endl ;
-            cout << "Roll No : " << Rno  << endl ;
+            cout << Rno << "\t" << Name << "\t" ;
         }
 };
 
@@ -36,9 +35,7 @@ class test : virtual public student
         }
         void show_test_score(void)
         {
-            cout << "\nMArks in Subject 1 :" << S1 << endl;
-            cout << "MArks in Subject 2 :" << S2 << endl;
-            cout << "MArks in Subject 3 :" << S3 << endl;
+            cout << S1 << "\t" << S2 << "\t" << S3 << "\t";
         }
 };
 
@@ -53,32 +50,61 @@ class sports : virtual public student
         }
         void show_sport_score(void)
         {
-            cout << "\nMArks in Sport 1 :" << E1 << endl;
-            cout << "MArks in Sport 2 :" << E2 << endl;
+            cout << E1 << "\t" << E2 << "\t";
         }
 };
 
 class Result : public test , public sports
 {
     public:
-        void show_result(void)
-        {
-            get_test_score(100,90,98);
-            get_student_details(13,"Dev");
-            get_sport_score(90,90);
-            float total = S1 + S2 + S3 + E1 + E2 ;
-            float avg = total / 5 ;
-            show_student_details();
-            show_test_score();
-            show_sport_score();
-            cout << "\nTotal marks :" << total << "\n";
-            cout << "\nAverage     :" << avg   << "\n";
-        }
+        void getdatas(void);
+        void show_result(void);
 };
 
+void Result::getdatas(void)
+{
+    string Nm;
+    int Rno;
+    float s1,s2,s3,e1,e2;
+    cout << "\nFill in the details";
+    cout << "\nName      : ";cin >> Nm;
+    cout << "\nRoll NO   : ";cin >> Rno;
+    cout << "\nMarks in ";
+    cout << "\nSubject 1 :";cin >> s1;
+    cout << "\nSubject 2 :";cin >> s2;
+    cout << "\nSubject 3 :";cin >> s3;
+    cout << "\nSports 1  :";cin >> e1;
+    cout << "\nSports 2  :";cin >> e2;
+    get_student_details(Rno,Nm);
+    get_test_score(s1,s2,s3);
+    get_sport_score(e1,e2);
+}
+
+void Result::show_result(void)
+{
+    float total = S1 + S2 + S3 + E1 + E2 ;
+    float avg = total / 5 ;
+    show_student_details();
+    show_test_score();
+    show_sport_score();
+    cout << avg <<"\n";
+}
 int main()
 {
-    Result A ;
-    A.show_result();
+    Result *Rlist;
+    int Snos;
+    cout << "Enter the number of students : ";
+    cin >> Snos;
+    Rlist = new Result[Snos];
+    for(int i=0;i<Snos;i++)
+    {
+        Rlist[i].getdatas();
+    }
+    cout << "Here are the Final Results \n\n";
+    cout << "Rno\tName\tSub1\tSub2\tSub3\tSport1\tSport2 \t Avg\n\n";
+    for(int i=0;i<Snos;i++)
+    {
+        Rlist[i].show_result();
+    }
     return 0 ;
 }
