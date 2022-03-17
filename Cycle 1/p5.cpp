@@ -38,7 +38,7 @@ matrix::~matrix()
         delete p[i];
     }
     delete p ;
-    cout << "Destructor called \n";
+    cout << "Destructor called\n";
 }
 
 int matrix::trace()

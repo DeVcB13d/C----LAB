@@ -47,14 +47,16 @@ Vector operator*(Vector A,Vector B)
     }
     return C;
 }
+
+
 int main()
 {
     Vector A,B,C;
     cout << "Enter the vector A size and elements: ";
     cin >> A ;
-    cout << "\nA = "<< A << "\n";
     cout << "Enter the vector B size and elements: ";
     cin >> B ;
+    cout << "\nA = "<< A << "\n";
     cout << "\nB = "<< B << "\n";
     C = A * B ;
     cout << "C = A * B = " << C << "\n" ;

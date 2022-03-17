@@ -3,10 +3,10 @@
 // perform the operations like adding & deleting items to the list and printing the
 // total value of an order.
 
-// Not complete
+
 
 #include <iostream>
-#include <cstring>
+#include <string>
 using namespace std;
 
 const int m = 20;
@@ -120,10 +120,10 @@ int main()
         }
         else if (choice == 2)
         {
-            cout << "Enter item code to delete : "
-                 << "\n";
+            cout << "Enter item code to delete : ";
             int icode;
             cin >> icode;
+            cout << "\n";
             deleteitem(icode, inum2);
         }
         else if (choice == 3)

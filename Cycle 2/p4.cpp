@@ -60,7 +60,9 @@ matrix operator+ (matrix A , matrix B){
         return e ;    
     }
     else {
+        matrix k(0,0);
         cout << "Incompatible dimensions\n";
+        return k;
     }
     
 }
@@ -81,7 +83,10 @@ matrix operator* (matrix A, matrix B)
         return x ;
     }
     else{
+        matrix k(0,0);
         cout << "Incompatible Dimensions\n";
+        return k;
+        
     }
     
 }
