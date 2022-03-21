@@ -83,10 +83,9 @@ matrix operator* (matrix A, matrix B)
         return x ;
     }
     else{
-        matrix k(0,0);
-        cout << "Incompatible Dimensions\n";
-        return k;
-        
+        cout << "Dimensions not compatible\n";
+        matrix y(1,1);
+        return y;
     }
     
 }

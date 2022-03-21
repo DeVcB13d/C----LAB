@@ -93,18 +93,48 @@ int main()
 {
     Result *Rlist;
     int Snos;
-    cout << "Enter the number of students : ";
-    cin >> Snos;
-    Rlist = new Result[Snos];
-    for(int i=0;i<Snos;i++)
+    //Menu
+    cout << "1. Add student details\n";
+    cout << "2. Get the results\n";
+    cout << "3. Exit\n";
+    int choice = 0;
+    while (choice!=3)
     {
-        Rlist[i].getdatas();
+        cout << "Pick an option :";cin>>choice;
+        switch (choice)
+        {
+            case 1 :
+            {
+                cout << "Enter the number of students : ";
+                cin >> Snos;
+                Rlist = new Result[Snos];
+                for(int i=0;i<Snos;i++)
+                {
+                    Rlist[i].getdatas();
+                }
+                break;
+            }
+            case 2 :
+            {
+                cout << "Here are the Final Results \n\n";
+                cout << "Rno\tName\tSub1\tSub2\tSub3\tSport1\tSport2 \t Avg\n\n";
+                for(int i=0;i<Snos;i++)
+                {
+                    Rlist[i].show_result();
+                }
+                break;
+            }
+            case 3 :
+            {
+                cout << "Thanks for using\n";
+                break;
+            }
+            default:
+                cout << "Invalid option\n";
+                break;
+        }
     }
-    cout << "Here are the Final Results \n\n";
-    cout << "Rno\tName\tSub1\tSub2\tSub3\tSport1\tSport2 \t Avg\n\n";
-    for(int i=0;i<Snos;i++)
-    {
-        Rlist[i].show_result();
-    }
+
+
     return 0 ;
 }

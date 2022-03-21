@@ -9,6 +9,7 @@ class Vector
     public:
         Vector(){}
         Vector(int z,int* k);
+        void create_Vobj();
         friend bool operator==(Vector,Vector);
         friend bool operator!=(Vector,Vector);
         friend bool operator<=(Vector,Vector);
@@ -55,77 +56,102 @@ bool operator==(Vector x,Vector y)
 
 bool operator!=(Vector x,Vector y)
 {
-    bool ret;
-    if (x.size == y.size){
-        ret = false;
-        for(int j = 0 ; j < x.size ; j++){
-            if(x.Varr[j] != y.Varr[j]){
-                ret = true;
-                break;
-            }
-        }
-    }
-    else ret = true;
-    return ret;
+    bool ret = (x == y);
+    return !(ret);
 }
 
 bool operator<=(Vector x,Vector y)
 {
-    bool ret = false;
-    int ctrl = 0;
-    for(int j = 0 ; (j < x.size && ctrl == 0); j++){
-        if(y.Varr[j] > x.Varr[j]){
-            ret = true;
-            ctrl = 1;
-        }
+    bool ret;
+    if (x<y || x==y){
+        return true;
     }
-    return ret;
+    else return false;
+        
 }
 
 bool operator>=(Vector x,Vector y)
 {
-    bool ret = false;
-    int ctrl = 0;
-    for(int j = 0 ; (j < x.size && ctrl == 0); j++){
-        if(x.Varr[j] > y.Varr[j]){
-            ret = true;
-            ctrl = 1;
-        }
+    bool ret;
+    if (x>y || x==y){
+        return true;
     }
-    return ret;
+    else return false;
 }
 
 bool operator<(Vector x,Vector y)
 {
-    bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] > y.Varr[j]){
-            ret = false;
-        }
+    bool ret;
+    int ctrl = 0;
+    if(x==y) {
+        return false;
+        ctrl++;
     }
-    return ret;
+    else {
+        for(int j = 0 ; (j < x.size && ctrl == 0); j++){
+            if(x.Varr[j] < y.Varr[j])
+            {
+                ret = false;
+                ctrl += 1;
+            }
+            else if (x.Varr[j] > y.Varr[j])
+            {
+                ret = true;
+                ctrl+=1;
+            }
+        }
+        return ret;
+    }
+
 }
 
 bool operator>(Vector x,Vector y)
 {
-    bool ret = true;
-    for(int j = 0 ; j < x.size ; j++){
-        if(x.Varr[j] < y.Varr[j]){
-            ret = false;
-        }
+    bool ret;
+    int ctrl = 0;
+    if(x==y) {
+        return false;
+        ctrl++;
     }
-    return ret;
+    else {
+        for(int j = 0 ; (j < x.size && ctrl == 0); j++){
+            if(x.Varr[j] < y.Varr[j])
+            {
+                ret = true;
+                ctrl += 1;
+            }
+            else if (x.Varr[j] > y.Varr[j])
+            {
+                ret = false;
+                ctrl+=1;
+            }
+        }
+        return ret;
+    }
 }
 
-
-
+void Vector::create_Vobj()
+{
+    int sz;
+    cout << "Enter the size of array";cin>>sz;
+    cout << "Enter "<<sz<<"elements : \n";
+    int *arr1 = new int [sz];
+    int el = 0;
+    for(int i=0;i<sz;i++){
+        cin >> el;
+        arr1[i] = el;
+    }
+    Vector(sz,arr1);
+}
 int main()
 {
-    int l1[6] = {1,2,3,4,7};
-    int l2[6] = {1,2,10,4,6};
-    Vector A(6,l1),B(6,l2);
-    cout << "\n\n";
-    cout << (A <= B) << "\n\n\n";
-    cout << (A >=B) << "\n";
+    //To get 2 array inputs
+    Vector V1,V2;
+    V1.create_Vobj();
+    V2.create_Vobj();
+    cout << "MENU\n";
+    cout << "1 to Create new vector\n";
+    cout << "Enter operation to compare";
+    
     return 0 ;
 }

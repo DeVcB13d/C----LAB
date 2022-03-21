@@ -20,7 +20,6 @@ class MATRIX
         friend MATRIX matrix_transpose(MATRIX& A);
         friend int trace(MATRIX& A);
         void get_RC();
-        ~MATRIX();
 };
 
 MATRIX::MATRIX(int r,int c)
@@ -107,7 +106,7 @@ MATRIX matrix_mult(MATRIX& A , MATRIX& B)
 
 int trace(MATRIX& A)
 {
-    if(A.C == A.C){
+    if(A.R == A.C){
         int tr = 0 ;
         for(int i = 0; i<A.C ; i++){
             tr+=A.p[i][i];
@@ -116,26 +115,16 @@ int trace(MATRIX& A)
     }
 }
 
-MATRIX matrix_transpose(MATRIX& A)
+MATRIX matrix_transpose(MATRIX &A)
 {
     MATRIX X(A.C,A.R) ;
-        for(int i = 0 ;i < A.R ;i++){
-            for(int j = 0 ; j < A.C ; j++){
-                X.p[i][j] = A.p[j][i];
+    for(int i = 0 ;i < A.C ;i++){
+        for(int j = 0 ; j < A.R ; j++){
+            X.p[j][i] = A.p[i][j];
         }
     }
     return X;
 }
-
-MATRIX::~MATRIX()
-{
-    for(int i=0;i<R;i++){
-        delete p[i];
-    }
-    delete p ;
-    cout << "Destructor called \n";
-}
-
 
 void MATRIX::get_RC(){
     int r1,c1;
@@ -156,8 +145,8 @@ int main()
     cout << "M2 = \n";
     M2.show_matrix();
     cout << "MENU :\n";
-    cout << "1. Add\n2. Multiply\n3.Transpose\n";
-    cout << "4.Traces\n5.Exit\n";
+    cout << "1. Add\n2. Multiply\n3. Transpose\n";
+    cout << "4. Traces\n5. Exit\n";
     int choice = 0 ;
     
     while (choice != 5){
