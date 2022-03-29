@@ -2,7 +2,7 @@
 //with attributes(Name, Roll_no, Marks of 3 subjects) 
 //using class with member functions input(), calcGrade(), display().
 #include<iostream>
-#include<cstring>
+#include<string>
 using namespace std ;
 
 class student{
@@ -70,7 +70,7 @@ int main()
     cout << "Enter the Number of students: ";
     cin >> nsts ;
     slist = new student[nsts+1];
-    cout << "Enter the student details: \n";
+    cout << "Enter the student details:\n\n";
     for(int i=1;i<=nsts;i++){
         slist[i].input();
     }

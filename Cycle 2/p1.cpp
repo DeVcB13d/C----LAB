@@ -133,8 +133,8 @@ bool operator>(Vector x,Vector y)
 void Vector::create_Vobj()
 {
     int sz;
-    cout << "Enter the size of array";cin>>sz;
-    cout << "Enter "<<sz<<"elements : \n";
+    cout << "Enter the size of array : ";cin>>sz;
+    cout << "Enter "<<sz<<" elements : \n";
     int *arr1 = new int [sz];
     int el = 0;
     for(int i=0;i<sz;i++){
@@ -143,6 +143,24 @@ void Vector::create_Vobj()
     }
     Vector(sz,arr1);
 }
+
+//Function to give output based on T/F values
+void compare_out(bool x)
+{
+    if (x==true)
+    {
+        cout << "The comparison is True\n";
+    }
+    else if(x==false)
+    {
+        cout << "The comparison is False\n";
+    }
+    else 
+    {
+        cout << "No Output\n";
+    }
+}
+
 int main()
 {
     //To get 2 array inputs
@@ -150,8 +168,44 @@ int main()
     V1.create_Vobj();
     V2.create_Vobj();
     cout << "MENU\n";
-    cout << "1 to Create new vector\n";
-    cout << "Enter operation to compare";
-    
+    cout << "1 - To Create new vector\n";
+    cout << "Or Enter Comparison operations\n";
+    cout << "2 - To Exit\n";
+    char choice[2] = "0";
+    while (choice != "2")
+    {
+        cout << "Choose an option \n";
+        cin >> choice ;
+        if (choice == "1")
+        {
+            V1.create_Vobj();
+            V2.create_Vobj();
+        }
+        else if(choice == "<"){
+            compare_out(V1 < V2);
+        }
+        else if(choice == ">")
+        {
+            compare_out(V1 > V2);
+        }
+        else if(choice == "==" || choice == "="){
+            compare_out(V1 == V2);
+        }
+        else if(choice == "!="){
+            compare_out(V1 != V2);
+        }
+        else if(choice == "<="){
+            compare_out(V1 <= V2);
+        }
+        else if(choice == ">="){
+            compare_out(V1 >= V2);break;
+        }
+        else if(choice == "2"){
+            cout << "Thanks for using\n";break;
+        }
+        else{
+            cout << "Invalid option\n";break;
+        }
+    }
     return 0 ;
 }
