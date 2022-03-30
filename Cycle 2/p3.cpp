@@ -6,60 +6,37 @@ using namespace std;
 
 class Vector
 {
-    int size;
-    int* Varr;
+    float i,j,k;
     public:
-        friend Vector operator* (Vector,Vector);
+        friend float operator*(Vector,Vector);
         friend ostream &operator<<( ostream &output, const Vector &V ) { 
-            output << "{" ;
-            for (int i = 0;i < V.size;i++)
-            {
-                output<<V.Varr[i] << ",";
-            }
-            output <<"}";
+            output << V.i << "i + " << V.j << "j + " << V.k << "k\n" ;
             return output;            
         }
         friend istream &operator>>( istream  &input, Vector &V ) { 
-            input >> V.size;
-            V.Varr = new int [V.size];
-            for (int i = 0;i < V.size;i++)
-            {
-                input >> V.Varr[i];
-            }
+            input >> V.i >> V.j >> V.k;
             return input;            
     }
 };
 
-Vector operator*(Vector A,Vector B)
+float operator*(Vector A,Vector B)
 {
-    Vector C ;
-    if (A.size > B.size) C.size = A.size ;
-    else C.size  = B.size;
-    C.Varr = new int [C.size];
-    for(int i  = 0;i<C.size;i++)
-    {
-        if (A.Varr[i] && B.Varr[i]){
-            C.Varr[i] = A.Varr[i]*B.Varr[i];
-        }
-        else{
-            C.Varr[i] = 0 ;
-        }
-    }
-    return C;
+    float DP = (A.i*B.i)+(A.j*B.j)+(A.k*B.k);
+    return DP;
 }
 
 
 int main()
 {
-    Vector A,B,C;
-    cout << "Enter the vector A size and elements: ";
+    Vector A,B;
+    cout << "Enter the vector A i,j an k : ";
     cin >> A ;
-    cout << "Enter the vector B size and elements: ";
+    cout << "Enter the vector B i,j an k : ";
     cin >> B ;
     cout << "\nA = "<< A << "\n";
-    cout << "\nB = "<< B << "\n";
-    C = A * B ;
-    cout << "C = A * B = " << C << "\n" ;
+    cout << "B = "<< B << "\n";
+    int C = A * B ;
+    cout << "C = A * B = " << C << "\n\n" ;
     return 0 ;
 }
 

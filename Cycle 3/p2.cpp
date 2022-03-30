@@ -56,35 +56,61 @@ void list<T>::show()
     cout << "]\n";
 }
 
-int main()
+template <class C>
+void Menu()
 {
     int sz;
     cout << "Enter List Size : ";cin>>sz;
-    list<int> L1(sz);
-    cout << "For integer list : \n";
+    list<C> L1(sz);
     cout << "Enter " <<sz<<" elements : \n";
     for(int i=0;i<sz;i++)
     {
-        int Z;
+        C Z;
         cout << ">>>";
         cin >> Z;
         L1.append(Z);
     }
-    list<char> L2(sz);
-    cout << "For char list : \n";
-    cout << "Enter " <<sz<<" elements : \n";
-    for(int i=0;i<sz;i++)
-    {
-        char Z;
-        cout << ">>> ";
-        cin >> Z;
-        L2.append(Z);
-    }
-    cout << "L1 = " ;
     L1.show();
-    cout << "L2 = ";
-    L2.show();
-    return 0;
+}
+
+
+int main()
+{
+    cout << "Choose a data type for the list :\n";
+    cout << "1. int\n2. float\n3. char\n4. Exit\n";
+    int choice = 0;
+    while (choice != 4)
+    {
+        cout << "Choose an option : ";
+        cin >> choice ;
+        switch (choice)
+        {
+            case 1 :
+            {
+                Menu<int>();
+                break;
+            }
+            case 2 : 
+            {
+                Menu<float>();
+                break;
+            }
+            case 3 :
+            {
+                Menu<char>();
+                break;
+            }
+            case 4 :
+            {
+                cout << "Exit\n";
+                break;
+            }
+            default:
+            {
+                cout << "Invalid option\n";
+            }
+        }
+    }
 }
 
 
