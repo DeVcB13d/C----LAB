@@ -1,4 +1,5 @@
-//Write a C++ program to demonstrate the order of execution of constructors & destructors.
+//Write a C++ program to demonstrate the order of execution of constructors & destructors
+//for a matrix class
 #include<iostream>
 using namespace std ;
 
@@ -20,16 +21,15 @@ matrix::matrix(int r,int c)
     for(int i = 0; i < R ; i++){
             p[i] = new int[C+1];
         }
-
+    cout<<"Enter  a "<<C<<"X"<<R<<" matrix\n";
     for(int i = 0; i < R ; i++){
-        cout << "Enter " << C << " elements \n";
         for(int j = 0; j < C ; j++){
             int elem;
             cin >> elem;
             p[i][j] = elem;
         }
     }
-    cout << "Constructor called\n";
+    cout << "\nConstructor called\n";
 }
 
 matrix::~matrix()
@@ -65,5 +65,5 @@ int main()
     cout << "Enter number of columns : ";
     cin >> c1;
     matrix B(r1,c1);
-    cout << "Trace = " << B.trace() << "\n\n";
+    cout << "\nTrace = " << B.trace() << "\n\n";
 }

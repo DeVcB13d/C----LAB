@@ -41,9 +41,8 @@ void MATRIX::create_matrix(int r,int c)
     for (int i = 0;i<R;i++){
         p[i] = new int[C] ;
     }
-
+    cout << "Enter " << r << "X" << c << " matrix : \n";
     for(int l = 0 ; l < R ; l++){
-        cout << "Enter " << C << " elements:\n ";
         for (int k = 0 ; k < C ; k++ ){
             cin >>  value ;
             p[l][k] = value ;
@@ -76,7 +75,7 @@ MATRIX matrix_add(MATRIX& A , MATRIX& B)
     }
     else{
         cout << "Cannot Add\n";
-        MATRIX X;
+        MATRIX X(0,0);
         return X ;
     }
     
@@ -84,6 +83,7 @@ MATRIX matrix_add(MATRIX& A , MATRIX& B)
 
 MATRIX matrix_mult(MATRIX& A , MATRIX& B)
 {
+    MATRIX x;
     if (A.C == B.R){
         MATRIX x(A.R,B.C);
         for(int i = 0 ;i < A.R ;i++){
@@ -99,28 +99,34 @@ MATRIX matrix_mult(MATRIX& A , MATRIX& B)
     }
     else{
         cout << "Dimensions not compatible\n";
-        MATRIX y(1,1);
-        return y;
+        MATRIX x(1,1);
+        return x;
     }
 }
 
 int trace(MATRIX& A)
 {
-    if(A.R == A.C){
+    if(A.C == A.R){
         int tr = 0 ;
         for(int i = 0; i<A.C ; i++){
             tr+=A.p[i][i];
         }
         return tr;
     }
+    else
+    {
+        cout << "Not a square matrix\n";
+        return 0;
+    }
 }
 
 MATRIX matrix_transpose(MATRIX &A)
 {
     MATRIX X(A.C,A.R) ;
-    for(int i = 0 ;i < A.C ;i++){
-        for(int j = 0 ; j < A.R ; j++){
+    for(int i = 0 ;i < A.R ;i++){
+        for(int j = 0 ; j < A.C ; j++){
             X.p[j][i] = A.p[i][j];
+            cout << X.p[j][i] << " ";
         }
     }
     return X;
@@ -136,6 +142,7 @@ void MATRIX::get_RC(){
 int main()
 {
     MATRIX M1,M2,M3,M4,M5,M6;
+    {
     cout << "To create 1st Matrix :\n";
     M1.get_RC();
     cout << "To create 2nd Matrix :\n";
@@ -153,14 +160,14 @@ int main()
         cout << "Choose :";
         cin >> choice ;
         if (choice == 1){
-            M3 = matrix_add(M1,M2);
             cout << "M1 + M2  = ";
+            M3 = matrix_add(M1,M2);
             M3.show_matrix();
         }
         else if (choice == 2)
         {
-            M4 = matrix_mult(M1,M2);
             cout << "M1 X M2  = ";
+            M4 = matrix_mult(M1,M2);
             M4.show_matrix();
         }
         else if (choice == 3)
@@ -185,6 +192,7 @@ int main()
         {
             cout << "Invalid option\n";
         }
+    }
     }
     return 0 ;
 

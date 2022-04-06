@@ -2,8 +2,7 @@
 //(cust_name, acc_no, acc_type, balance).
 //The program should be menu driven and it should have the following menus like adding new account, withdraw
 //(keep a min balance of 500), deposit, balance enquiry and account statement
-//(cust_name, acc_no, acc_type, balance)*/
-
+//(cust_name, acc_no, acc_type, balance)
 #include<iostream>
 #include<string>
 using namespace std ;
@@ -69,7 +68,7 @@ void customer::withdraw(float amount){
     else if (amount > balance ){
         cout << "Insufficient Balance "<<balance<<" withdrawal not possible"<<endl;}
     else 
-        {cout << "Balance "<<balance<<" less than 500 , withdrawal not possible\n";}
+        {cout << "Balance will be less than 500 , withdrawal not possible\n";}
 }
 
 

@@ -15,11 +15,17 @@ class String{
     public:
         String(const char *x);
         String(){}
+        String(const String &s)
+        {
+            l = s.l;
+            str = new char[l+1];
+            strcpy(str,s.str);
+        }
         void gs(){cin >> str;}
         friend void isequal(String A, String B);
         friend String concatnate(String A , String B);
         friend int length(String A){return A.l;}
-        void display(){cout << str << endl;}
+        void display(){cout << str;}
         friend int len(const char* x);
 };
 
@@ -70,8 +76,6 @@ void isequal(String A ,String B){
     
 }
 
-
-
 String::String(const char* y)
 {
     l = len(y);
@@ -85,31 +89,63 @@ String::String(const char* y)
 
 int main()
 {
-    cout << "Enter a text : " ;
-    char* x = new char[m];
-    cin >> x ;
-    cout << "Enter a text : " ;
-    char* y = new char[m];
-    cin >> y ;
-    String S1(x);
-    String S2(y);
-    delete x ;
-    delete y ;
-    cout << "S1 = ";
-    S1.display();
-    cout << "S2 = ";
-    S2.display();
-    cout << "Concatenating them : \n";
-    String S3 = concatnate(S1,S2);
-    S3.display();
-    cout << "Enter a text S4: " ;
-    char* z = new char[m];
-    cin >> z ;
-    String S4(z);
-    delete z ; 
-    cout << "Are S4 and S2 equal ? : \n";
-    S4.display();
-    S2.display();
-    isequal(S4,S2);
-    return 0 ;
+    String *Slist;
+    Slist = new String[m];
+    int i = 0;
+    //Menu
+    cout << "1. Add String to the list\n";
+    cout << "2. Concatnate 2 Strings\n";
+    cout << "3. Check if they are same\n";
+    cout << "4. Show Strings in the list\n";
+    cout << "5. Exit\n";
+    int choice = 0;
+    while (choice != 5)
+    {
+        cout << "\nChoose an option : ";
+        cin >> choice;
+        if (choice == 1)
+        {
+            cout << "Enter a text : " ;
+            char* x = new char[m];
+            cin >> x ;
+            Slist[i] = String(x);
+            i++;
+        }
+        else if(choice == 2)
+        {
+            int i1,i2;
+            cout << "Enter 2 object indexes : ";
+            cin >> i1 >> i2 ;
+            String K ;
+            K = concatnate(Slist[i1],Slist[i2]);
+            Slist[i1].display();
+            cout << " + ";
+            Slist[i2].display();
+            cout << " = ";
+            K.display();
+            cout << "\n";
+        }
+        else if (choice == 3)
+        {
+            int i1,i2;
+            cout << "Enter 2 object indexes : ";
+            cin >> i1 >> i2 ;
+            isequal(Slist[i1],Slist[i2]);
+        }
+        else if (choice == 4)
+        {
+            for(int j = 0 ; j < i ; j++)
+            {
+                cout << j << " : ";
+                Slist[j].display();
+                cout << "\n";
+            }
+            cout << "\n";
+        }
+        else if (choice == 5)
+        {
+            cout << "Exit\n";
+        }
+        else cout << "Invalid option\n";
+    }
 }

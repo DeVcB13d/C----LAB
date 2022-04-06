@@ -132,11 +132,12 @@ int main()
         cout << "\n\n1.Re-Generate the seqence\n";
         cout << "2.Calculate the mean\n";
         cout << "3.Show the sequence\n";
+        cout << "4.Exit to first menu\n ";
         
         while(choice2 != 4)
         {
-            cout << "Select an operation";
-            cout << ">>>";cin >> choice2;
+            cout << "\n\nSelect an operation : ";
+            cin >> choice2;
             cout << "\n\n";
             switch (choice2)
             {
