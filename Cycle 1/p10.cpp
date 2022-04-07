@@ -2,7 +2,7 @@
 // The list include details such as the Code-no and price of each item and
 // perform the operations like adding & deleting items to the list and printing the
 // total value of an order.
-
+// 
 
 
 #include <iostream>
@@ -17,32 +17,36 @@ class Sitems
     int Code_No;
     string name;
     float price;
-    int Nitems;
+    int stock;
 
 public:
     void copy(const Sitems &A);
     int getcode(void) { return Code_No; }
     void additem(void);
     friend void deleteitem(int, int);
+    friend void deletestock(int,int);
     float getprice(void);
+    void addstock();
     friend void createbill(int);
+    friend void stockdetails();
 };
 
 
 //Global variable to have item numbers
 int inum2 = 0;
-Sitems slist[m];
+Sitems stocklist[m];
+Sitems bill[m];
 
 void Sitems::copy(const Sitems &A)
 {
     Code_No = A.Code_No;
     name = A.name;
     price = A.price;
-    Nitems = A.Nitems;
+    stock = A.stock;
 }
 
 
-void Sitems::additem(void)
+void Sitems::addstock(void)
 {
     cout << "Enter item code: ";
     cin >> Code_No;
@@ -51,10 +55,22 @@ void Sitems::additem(void)
     cout << "Enter item price: ";
     cin >> price;
     cout << "Amount of items: ";
-    cin >> Nitems;
+    cin >> stock;
 }
 
-
+void deletestock(int code ,int &enums)
+{
+    int Rcode;
+    int rcheck = 0;
+    for(int i = 0; i < enums;i++)
+    {
+        if (stocklist[i].getcode() == code)
+        {
+            Rcode = i;
+            rechek = 1;
+        }  
+    } 
+}
 void deleteitem(int code, int &enums)
 {
     int Rcode;
@@ -92,9 +108,9 @@ void createbill(int inum)
         cout << slist[i].Code_No << "\t";
         cout << slist[i].name<<"\t";
         cout << slist[i].price<<"\t";
-        cout << slist[i].Nitems<<"\t";
+        cout << slist[i].stock<<"\t";
         cout << "\n";
-        total += (slist[i].price * slist[i].Nitems);
+        total += (slist[i].price * slist[i].stock);
     }
     cout << "\nTotal Price = " << total << "\n" ;
     
@@ -104,39 +120,26 @@ void createbill(int inum)
 int main()
 {
     cout << "\n\nMenu\n\n";
-    cout << "1. To Add items\n";
-    cout << "2. To Delete items\n";
-    cout << "3. To Create a bill\n";
-    cout << "4. Exit\n";
+    cout << "1. To add items to the stock\n";
+    cout << "2. To delete items from the stock\n";
+    cout << "3. To Display the stock details\n";
+    cout << "4. To Add items\n";
+    cout << "5. To Delete items\n";
+    cout << "6. To Create a bill\n";
+    cout << "7. Exit\n";
+
     int choice = 0;
-    while (choice != 4)
+    while (choice != 7)
     {
-        cout << "\n\nPick an option : ";
+        cout << "Choose an option : " ;
         cin >> choice;
         if (choice == 1)
         {
-            slist[inum2].additem();
-            inum2++;
+            stocklist[inum2].addstock();
         }
         else if (choice == 2)
         {
-            cout << "Enter item code to delete : ";
-            int icode;
-            cin >> icode;
-            cout << "\n";
-            deleteitem(icode, inum2);
-        }
-        else if (choice == 3)
-        {
-            createbill(inum2);
-        }
-        else if (choice == 4)
-        {
-            cout << "Thanks for using!!!\n";
-        }
-        else
-        {
-            cout << "Invalid option\nTry again";
+
         }
     }
 }
