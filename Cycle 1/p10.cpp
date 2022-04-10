@@ -31,7 +31,6 @@ public:
     friend void stockdetails();
 };
 
-
 //Global variable to have item numbers
 int inum2 = 0;
 Sitems stocklist[m];
