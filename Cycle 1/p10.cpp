@@ -2,8 +2,6 @@
 // The list include details such as the Code-no and price of each item and
 // perform the operations like adding & deleting items to the list and printing the
 // total value of an order.
-// 
-
 
 #include <iostream>
 #include <string>
@@ -17,24 +15,30 @@ class Sitems
     int Code_No;
     string name;
     float price;
-    int stock;
-
+    int stock = 0;
+    int N_bought = 0;
 public:
+    //Stock related fns
+    friend void Delete_stock(int,int);
+    void Add_stock();
+    friend void Full_stock_details();
+    //Bill related fns
+    void Add_item_Bill(int);
+    friend void Delete_item_Bill(int, int);
+    friend void createBill(int);
+    //general fns
     void copy(const Sitems &A);
     int getcode(void) { return Code_No; }
-    void additem(void);
-    friend void deleteitem(int, int);
-    friend void deletestock(int,int);
     float getprice(void);
-    void addstock();
-    friend void createbill(int);
-    friend void stockdetails();
 };
 
 //Global variable to have item numbers
-int inum2 = 0;
-Sitems stocklist[m];
-Sitems bill[m];
+int Stock_num = 0;
+int Bill_num = 0;
+//List to store the stock
+Sitems Stock_list[m]; 
+//List to store the Bill
+Sitems Bill[m];
 
 void Sitems::copy(const Sitems &A)
 {
@@ -44,8 +48,8 @@ void Sitems::copy(const Sitems &A)
     stock = A.stock;
 }
 
-
-void Sitems::addstock(void)
+//Add a new item to the stock
+void Sitems::Add_stock(void)
 {
     cout << "Enter item code: ";
     cin >> Code_No;
@@ -57,27 +61,40 @@ void Sitems::addstock(void)
     cin >> stock;
 }
 
-void deletestock(int code ,int &enums)
+void Delete_stock(int code ,int &enums)
 {
-    int Rcode;
+    int Del_index;
     int rcheck = 0;
     for(int i = 0; i < enums;i++)
     {
-        if (stocklist[i].getcode() == code)
+        if (Stock_list[i].getcode() == code)
         {
-            Rcode = i;
-            rechek = 1;
+            Del_index = i;
+            rcheck = 1;
         }  
     } 
+    if (rcheck == 1)
+    {
+        for(int i = Del_index;i<Stock_num;i++)
+        {
+            Stock_list[i-1].copy(Stock_list[i]);
+        }
+        cout << "Deleted successfully\n";
+    }
+    else
+    {
+        cout << "ItemIndex not found\n";
+    }
 }
-void deleteitem(int code, int &enums)
+
+void Delete_item_Bill(int code, int &enums)
 {
     int Rcode;
     int rcheck = 0;
-    // To search and return the index
+    //To search and return the index
     for (int i = 0; i < enums; i++)
     {
-        if (slist[i].getcode() == code)
+        if (Bill[i].getcode() == code)
         {
             Rcode = i;
             rcheck = 1;
@@ -87,33 +104,47 @@ void deleteitem(int code, int &enums)
     {
         for (int j = Rcode; j < enums; j++)
         {
-            slist[j].copy(slist[j + 1]);
+            Bill[j].copy(Bill[j + 1]);
         }
         enums--;
-        cout << "Successfull !!!\n";
+        cout << "Deleted successfully\n";
     }
     else 
     {
-        cout << "Invalid Code\n";
+        cout << "ItemIndex not found\n";
     }
 }
 
-void createbill(int inum)
+void Full_stock_details()
 {
     float total = 0 ;
-    cout << "\n\nICode\tIName\tIprice\tItems\n";
-    for(int i = 0; i < inum2; i++)
+    cout << "\n\nICode\tIName\tIprice\tItems\tTotal\n";
+    for(int i = 0; i < Stock_num; i++)
     {
-        cout << slist[i].Code_No << "\t";
-        cout << slist[i].name<<"\t";
-        cout << slist[i].price<<"\t";
-        cout << slist[i].stock<<"\t";
+        cout << Bill[i].Code_No << "\t";
+        cout << Bill[i].name<<"\t";
+        cout << Bill[i].price<<"\t";
+        cout << Bill[i].stock<<"\t";
+        cout << Bill[i].stock*Bill[i].price;
         cout << "\n";
-        total += (slist[i].price * slist[i].stock);
+        total += (Bill[i].price * Bill[i].stock);
     }
-    cout << "\nTotal Price = " << total << "\n" ;
-    
+    cout << "\nTotal Price = " << total << "\n" ;   
 }
+
+void Sitems::Add_item_Bill(int &TotalItems)
+{
+    cout << "Enter Item code : ";
+    cin >> 
+    for(int i = 0;i<TotalItems;i++)
+    {
+        if 
+    }
+}
+
+
+
+
 
 
 int main()
@@ -124,7 +155,7 @@ int main()
     cout << "3. To Display the stock details\n";
     cout << "4. To Add items\n";
     cout << "5. To Delete items\n";
-    cout << "6. To Create a bill\n";
+    cout << "6. To Create a Bill\n";
     cout << "7. Exit\n";
 
     int choice = 0;
@@ -134,7 +165,7 @@ int main()
         cin >> choice;
         if (choice == 1)
         {
-            stocklist[inum2].addstock();
+            Stock_list[Stock_num].addstock();
         }
         else if (choice == 2)
         {
