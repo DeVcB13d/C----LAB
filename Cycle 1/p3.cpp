@@ -25,7 +25,6 @@ class customer{
             balance = balance + amount ;
             cout << "\nDeposit Successful\n";
             cout << "Balance : " << balance<< endl ;
-
         }
         void balance_enq(){
             cout << cust_name << "\n";

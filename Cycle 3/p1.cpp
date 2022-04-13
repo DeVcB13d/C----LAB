@@ -12,8 +12,8 @@ class sequence
         float* elems;
         int Nels;
     public:
-        virtual void generate(){}
-        virtual void mean(){}
+        virtual void generate() = 0;
+        virtual void mean() = 0;
         void show();
 };
 
