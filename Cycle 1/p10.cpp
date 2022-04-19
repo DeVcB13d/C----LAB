@@ -142,11 +142,6 @@ void Sitems::Add_item_Bill(int &TotalItems)
     }
 }
 
-
-
-
-
-
 int main()
 {
     cout << "\n\nMenu\n\n";
@@ -168,6 +163,13 @@ int main()
             Stock_list[Stock_num].addstock();
         }
         else if (choice == 2)
+        {
+            int C;
+            cout << "Enter the code of the item to delete : "
+            cin >> C;
+            Delete_stock(C,Stock_num);
+        }
+        else if (choice == 3)
         {
 
         }
