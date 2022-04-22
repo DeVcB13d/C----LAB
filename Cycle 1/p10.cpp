@@ -23,12 +23,13 @@ public:
     void Add_stock();
     friend void Full_stock_details();
     //Bill related fns
-    void Add_item_Bill(int);
-    friend void Delete_item_Bill(int, int);
-    friend void createBill(int);
+    friend void Add_item_Bill(Sitems *Bill_list,Sitems* Stock_list,int &BillItemNum,int &StocKItemNum);
+    friend void Delete_item_Bill(int code, int &enums);
+    friend void createBill(int&);
     //general fns
     void copy(const Sitems &A);
-    int getcode(void) { return Code_No; }
+    int getcode(void){ return Code_No; }
+    int getstock(void){return stock;}
     float getprice(void);
 };
 
@@ -47,7 +48,6 @@ void Sitems::copy(const Sitems &A)
     price = A.price;
     stock = A.stock;
 }
-
 //Add a new item to the stock
 void Sitems::Add_stock(void)
 {
@@ -80,6 +80,7 @@ void Delete_stock(int code ,int &enums)
             Stock_list[i-1].copy(Stock_list[i]);
         }
         cout << "Deleted successfully\n";
+        enums--;
     }
     else
     {
@@ -121,25 +122,81 @@ void Full_stock_details()
     cout << "\n\nICode\tIName\tIprice\tItems\tTotal\n";
     for(int i = 0; i < Stock_num; i++)
     {
-        cout << Bill[i].Code_No << "\t";
-        cout << Bill[i].name<<"\t";
-        cout << Bill[i].price<<"\t";
-        cout << Bill[i].stock<<"\t";
-        cout << Bill[i].stock*Bill[i].price;
+        cout << Stock_list[i].Code_No << "\t";
+        cout << Stock_list[i].name<<"\t";
+        cout << Stock_list[i].price<<"\t";
+        cout << Stock_list[i].stock<<"\t";
+        cout << Stock_list[i].stock*Stock_list[i].price;
         cout << "\n";
-        total += (Bill[i].price * Bill[i].stock);
+        total += (Stock_list[i].price * Stock_list[i].stock);
     }
     cout << "\nTotal Price = " << total << "\n" ;   
 }
 
-void Sitems::Add_item_Bill(int &TotalItems)
+void Add_item_Bill(Sitems *Bill_list,Sitems* Stock_list,int &BillItemNum,int &StockItemNum)
 {
+    int CodeIn;
     cout << "Enter Item code : ";
-    cin >> 
-    for(int i = 0;i<TotalItems;i++)
+    cin >> CodeIn;
+    int Item_Index = -1;
+    int Stock_index = -1;
+    for(int i = 0;i<StockItemNum;i++)
     {
-        if 
+        if (Stock_list[i].Code_No==CodeIn)
+        {
+            Stock_index = i;
+        }  
     }
+    if (Stock_index >= 0)
+    {
+        int Buy_Num;
+        cout << "Enter the Number of Items : ";
+        cin >> Buy_Num;
+        if (Buy_Num < Stock_list[Stock_index].stock){
+            for(int i = 0;i<StockItemNum;i++)
+            {
+                if (Stock_list[i].getcode() == CodeIn)
+                {
+                    Stock_index = i;
+                }
+            }
+            if (Stock_index>=0)
+            {
+                Bill_list[BillItemNum].copy(Stock_list[Stock_index]);
+                Bill_list[BillItemNum].N_bought = Buy_Num;
+                Stock_list[Stock_index].stock -= Buy_Num;
+                BillItemNum++;
+            }
+            else
+            {
+                cout << "Item does not exist\n";
+            }
+        }
+        else
+        {
+            cout << "Item is out of stock\n\n";
+        }
+    }
+    else
+    {
+        cout << "Item code is incorrect\n";
+    }
+}
+
+void createBill(int &BillItemNum)
+{
+    cout << "\t\tBILL\n";
+    cout << "No.\tCode\tName\tPrice\tAmount\tNetPrice\n";
+    float Total = 0;
+    for(int i = 0;i<BillItemNum;i++)
+    {
+        cout<<i<<"\t"<<Bill[i].Code_No<<"\t";
+        cout<<Bill[i].name<<"\t";
+        cout<<Bill[i].price<<"\t"<<Bill[i].N_bought<<"\t";
+        Total+=(Bill[i].price*Bill[i].N_bought);
+        cout<<Bill[i].price*Bill[i].N_bought<<"\n";
+    }
+    cout << "Total : "<<Total ;
 }
 
 int main()
@@ -148,30 +205,53 @@ int main()
     cout << "1. To add items to the stock\n";
     cout << "2. To delete items from the stock\n";
     cout << "3. To Display the stock details\n";
-    cout << "4. To Add items\n";
+    cout << "4. To Add items to the bill\n";
     cout << "5. To Delete items\n";
     cout << "6. To Create a Bill\n";
     cout << "7. Exit\n";
-
     int choice = 0;
     while (choice != 7)
     {
-        cout << "Choose an option : " ;
+        cout << "\n\nChoose an option : " ;
         cin >> choice;
         if (choice == 1)
         {
-            Stock_list[Stock_num].addstock();
+            Stock_list[Stock_num].Add_stock();
+            Stock_num++;
         }
         else if (choice == 2)
         {
-            int C;
-            cout << "Enter the code of the item to delete : "
-            cin >> C;
-            Delete_stock(C,Stock_num);
+            int Delcode;
+            cout << "Enter the code of the item to delete : ";
+            cin >> Delcode;
+            Delete_stock(Delcode,Stock_num);
         }
         else if (choice == 3)
         {
-
+            Full_stock_details();
+        }
+        else if (choice == 4)
+        {
+            Add_item_Bill(Bill,Stock_list,Bill_num,Stock_num);
+        }
+        else if (choice == 5)
+        {
+            int DelCode;
+            cout << "Enter the Code of Item to Delete from Bill : ";
+            cin >> DelCode;
+            Delete_item_Bill(DelCode,Bill_num);
+        }
+        else if(choice == 6)
+        {
+            createBill(Bill_num);
+        }
+        else if(choice == 7)
+        {
+            cout << "Thanks for using\n\n";
+        }
+        else
+        {
+            cout << "Invalid option selected\n";
         }
     }
 }
